@@ -1,0 +1,30 @@
+{
+  "name": "angular-dhcp-conf",
+  "version": "0.0.0",
+  "homepage": "https://github.com/linemanjs/lineman-angular-template",
+  "authors": [
+    "Vaclav Klecanda <vencax77@gmail.com>"
+  ],
+  "description": "Angular web client to rest-dhcpd-conf",
+  "keywords": [
+    "angular",
+    "dhcpd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.25",
+    "bootstrap": "~3.2.0",
+    "angular-resource": "~1.2.25",
+    "angular-route": "~1.2.25",
+    "underscore": "~1.7.0"
+  }
+}
