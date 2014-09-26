@@ -12,17 +12,25 @@ This file can be very useful for rapid prototyping or even organically
 defining a spec based on the needs of the client code that emerge.
 ###
 
+_db = {}
+
+addItem = (item) ->
+  _db[item.mac] = item
+  return item
+
 genItems = (cnt) ->
-  rv = []
   for idx in [1..cnt]
-    rv.push
-      _id: idx
-      name: "Item num.#{idx}"
-      desc: "#{idx}th description"
+    item =
+      name: "host#{idx}"
+      ip: "192.168.1.#{idx+10}"
+      mac: "aaaaaaaaaa#{idx+10}"
+      desc: (idx % 4 == 1) && '' || "#{idx}th description"
+      res: idx % 4 != 1
+    addItem(item)
 
-  rv
+genItems(20)
 
-_db = genItems()
+
 
 module.exports =
   drawRoutes: (app) ->
@@ -34,10 +42,25 @@ module.exports =
       res.json({ message: 'logging out!'})
 
 
-    app.get '/books', (req, res) ->
-      res.json([
-        {title: 'Great Expectations', author: 'Dickens'},
-        {title: 'Foundation Series', author: 'Asimov'},
-        {title: 'Treasure Island', author: 'Stephenson'}
-      ])
+    app.get '/dhcphosts', (req, res) ->
+      rv = []
+      for k, v of _db
+        rv.push v
+      res.json(rv)
 
+    app.post '/dhcphosts', (req, res) ->
+      req.body.res = true
+      created = addItem(req.body)
+      console.log(_db)
+      res.json(created)
+
+    app.put '/dhcphosts/:dhcphost', (req, res) ->
+      item = _db[req.params.dhcphost]
+      for k, v in req.body
+        item.k = v
+      req.json(item)
+
+    app.delete '/dhcphosts/:dhcphost', (req, res) ->
+      item = _db[req.params.dhcphost]
+      item.res = false;
+      res.json(item)

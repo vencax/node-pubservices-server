@@ -1,22 +1,74 @@
-<div id="home" class="row">
-  <div class="large-6 large-offset-3">
-    <h2>Welcome to the {{ title }} page!</h2>
 
-    <div class="alert-box">{{ message }}</div>
+<p class="info" ng-hide="{{cfg.message}}" ng-model="cfg.message"></p>
 
-    <ul class="small-block-grid-2">
-      <li>
-        <img class="th" src="img/demo1.jpg" shows-message-when-hovered message="Im the first house.">
-      </li>
-      <li>
-        <img class="th" src="img/demo2.jpg" shows-message-when-hovered message="Im the second house.">
-      </li>
-    </ul>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <div class="row">
-      <div class="large-12 columns">
-        <button ng-click="logout()" class="button large expand radius">Log Out</button>
-      </div>
-    </div>
+
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <p>
+      <button ng-hide="createFormVisible" type="button" class="btn btn-info" ng-click="showCreateForm();">
+        <i class="glyphicon glyphicon-pushpin"></i> Add
+      </button>
+      <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
+      <button ng-click="tableParams.filter({})" class="btn btn-default pull-right">Clear filter</button>
+
+      <form ng-show="createFormVisible">
+        <p>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="newItem.name" ngRequired="true" placeholder="Name">
+            <input type="text" class="form-control" ng-model="newItem.ip" ngRequired="true"placeholder="IP address">
+            <input type="text" class="form-control" ng-model="newItem.mac" ngRequired="true" placeholder="Mac address">
+            <input type="text" class="form-control" ng-model="newItem.desc" placeholder="Description">
+          </div>
+          <button type="submit" class="btn btn-primary" ng-click="create($event);">Submit</button>
+          <button type="submit" class="btn btn-default" ng-click="hideCreateForm();">Cancel</button>
+        </p>
+      </form>
+
+    </p>
+
+    <table ng-table="tableParams" show-filter="true" class="table table-stripped">
+      <tr ng-repeat="host in $data" ng-class="{active: host.res == true}">
+        <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">
+          {{host.name}}
+        </td>
+        <td data-title="'IP address'" sortable="'ip'" filter="{ 'ip': 'text' }">
+          {{host.ip}}
+        </td>
+
+        <td data-title="'MAC address'" filter="{ 'mac': 'text' }">
+          {{host.mac}}
+        </td>
+
+        <td data-title="'description'" filter="{ 'desc': 'text' }">
+          {{host.desc}}
+        </td>
+
+        <td>
+            <button ng-hide="host.res" type="button" class="btn btn-xs btn-info" ng-click="makeReservation($event, host);">
+              <i class="glyphicon glyphicon-pushpin"></i> Make reservation
+            </button>
+
+            <button ng-show="host.res" type="button" class="btn btn-xs btn-danger" ng-click="remove($event, host);">
+              <i class="glyphicon glyphicon-remove"></i> Remove reservation
+            </button>
+        </td>
+
+        <td>
+            <button type="button" class="btn btn-xs btn-success" ng-click="wakeHost($event, host);">
+              <i class="glyphicon glyphicon-off"></i> Wakeup
+            </button>
+        </td>
+
+      </tr>
+    </table>
+
   </div>
 </div>

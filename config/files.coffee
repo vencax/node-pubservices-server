@@ -8,14 +8,21 @@ To see the default definitions for Lineman's file paths and globs, see:
 ###
 
 module.exports = (lineman) ->
+
   # Override file patterns here
   js:
     vendor: [
       "vendor/bower/angular/angular.js",
       "vendor/bower/angular-resource/angular-resource.js",
-      "vendor/bower/angular-route/angular-route.js"
+      "vendor/bower/angular-route/angular-route.js",
+      "vendor/bower/ng-table/ng-table.js"
     ],
     app: [
       "app/js/app.js",
       "app/js/**/*.js"
+    ]
+
+  css:
+    vendor: [
+      "vendor/bower/ng-table/ng-table.css"
     ]
