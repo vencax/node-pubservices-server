@@ -56,9 +56,11 @@ module.exports =
 
     app.put '/dhcphosts/:dhcphost', (req, res) ->
       item = _db[req.params.dhcphost]
-      for k, v in req.body
-        item.k = v
-      req.json(item)
+      console.log(item);
+      for k, v of req.body
+        item[k] = v
+      console.log(item);
+      res.json(item)
 
     app.delete '/dhcphosts/:dhcphost', (req, res) ->
       item = _db[req.params.dhcphost]
