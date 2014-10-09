@@ -26,6 +26,7 @@
     "angular-resource": "~1.2.25",
     "angular-route": "~1.2.25",
     "underscore": "~1.7.0",
-    "ng-table": "~0.3.3"
+    "ng-table": "~0.3.3",
+    "angular-bootstrap": "~0.11.2"
   }
 }

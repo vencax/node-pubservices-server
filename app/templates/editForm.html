@@ -1,0 +1,22 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">I'm a modal!</h3>
+</div>
+
+<div class="modal-body">
+  <form>
+    <p>
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="item.name" ngRequired="true" placeholder="Name">
+        <input type="text" class="form-control" ng-model="item.ip" ngRequired="true"placeholder="IP address">
+        <input type="text" class="form-control" ng-model="item.mac" ngRequired="true" placeholder="Mac address">
+        <input type="textarea" class="form-control" ng-model="item.desc" placeholder="Description">
+      </div>
+    </p>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">OK</button>
+  <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,7 +1,6 @@
-angular.module("app").controller('HomeController', ['$scope', '$filter', 'ngTableParams', 'DHCPDHost', function($scope, $filter, NgTableParams, DHCPDHost) {
+angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal', 'ngTableParams', 'DHCPDHost', function($scope, $filter, $modal, NgTableParams, DHCPDHost) {
 
   $scope.data = DHCPDHost.query();
-
 
   $scope.tableParams = new NgTableParams({
     page: 1,            // show first page
@@ -29,26 +28,62 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', 'ngTabl
   });
 
   $scope.newItem = new DHCPDHost({res: true});
-  $scope.createFormVisible = false;
 
-  $scope.showCreateForm = function() {
-    $scope.createFormVisible = true;
+  var _copyHost = function(src, dest) {
+    dest.ip = src.ip;
+    dest.desc = src.desc;
+    dest.mac = src.mac;
+    dest.name = src.name;
   };
 
-  $scope.hideCreateForm = function() {
-    $scope.createFormVisible = false;
-  };
+  $scope.editForm = function (host) {
 
-  $scope.create = function($event) {
-    $scope.newItem.$save(function(data){
-      console.log('success, got data: ', data);
-      $scope.data.push($scope.newItem);
-      $scope.tableParams.reload();
-      $scope.hideCreateForm();
-      // $scope.newItem = new DHCPDHost({res: true});
-    }, function(err){
-      alert('request failed ' + err);
+    var modalInstance = $modal.open({
+      templateUrl: 'editForm.html',
+      controller: 'ModalInstanceCtrl',
+      resolve: {
+        item: function () {
+          return host ? new DHCPDHost(host) : $scope.newItem;
+        }
+      }
     });
+
+    modalInstance.result.then(function (item) {
+
+      if(host) {
+
+        if(item.mac != host.mac) {
+          // we have chaged primary ID, so remove the old item and add a newone
+          host.$remove({dhcphost: host.mac}, function(data){
+            item.$save(function(data){
+              console.log('success, got data: ', data);
+              _copyHost(item, host);
+            });
+          });
+        } else {
+          item.$update({dhcphost:item.mac}, function(data){
+            console.log('success, got data: ', data);
+            _copyHost(item, host);
+          }, function(err){
+            alert('request failed ' + err);
+          });
+        }
+
+      } else {
+
+        item.$save(function(data){
+          console.log('success, got data: ', data);
+          $scope.data.push($scope.newItem);
+          $scope.tableParams.reload();
+          $scope.newItem = new DHCPDHost({res: true});
+        }, function(err){
+          alert('request failed ' + err);
+        });
+
+      }
+
+    });
+
   };
 
   $scope.makeReservation = function($event, host){
@@ -70,3 +105,20 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', 'ngTabl
   };
 
 }]);
+
+
+// Please note that $modalInstance represents a modal window (instance) dependency.
+// It is not the same as the $modal service used above.
+
+angular.module('app').controller('ModalInstanceCtrl', function ($scope, $modalInstance, item) {
+
+  $scope.item = item;
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});

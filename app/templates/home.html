@@ -13,25 +13,11 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
     <p>
-      <button ng-hide="createFormVisible" type="button" class="btn btn-info" ng-click="showCreateForm();">
+      <button type="button" class="btn btn-info" ng-click="editForm();">
         <i class="glyphicon glyphicon-pushpin"></i> Add
       </button>
       <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
       <button ng-click="tableParams.filter({})" class="btn btn-default pull-right">Clear filter</button>
-
-      <form ng-show="createFormVisible">
-        <p>
-          <div class="form-group">
-            <input type="text" class="form-control" ng-model="newItem.name" ngRequired="true" placeholder="Name">
-            <input type="text" class="form-control" ng-model="newItem.ip" ngRequired="true"placeholder="IP address">
-            <input type="text" class="form-control" ng-model="newItem.mac" ngRequired="true" placeholder="Mac address">
-            <input type="text" class="form-control" ng-model="newItem.desc" placeholder="Description">
-          </div>
-          <button type="submit" class="btn btn-primary" ng-click="create($event);">Submit</button>
-          <button type="submit" class="btn btn-default" ng-click="hideCreateForm();">Cancel</button>
-        </p>
-      </form>
-
     </p>
 
     <table ng-table="tableParams" show-filter="true" class="table table-stripped">
@@ -54,6 +40,10 @@
         <td>
             <button ng-hide="host.res" type="button" class="btn btn-xs btn-info" ng-click="makeReservation($event, host);">
               <i class="glyphicon glyphicon-pushpin"></i> Make reservation
+            </button>
+
+            <button ng-show="host.res" type="button" class="btn btn-xs btn-info" ng-click="editForm(host);">
+              <i class="glyphicon glyphicon-pushpin"></i> Edit
             </button>
 
             <button ng-show="host.res" type="button" class="btn btn-xs btn-danger" ng-click="remove($event, host);">
