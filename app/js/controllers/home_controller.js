@@ -1,4 +1,4 @@
-angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal', 'ngTableParams', 'DHCPDHost', function($scope, $filter, $modal, NgTableParams, DHCPDHost) {
+angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal', 'ngTableParams', 'DHCPDHost', 'HostStateSrvc', function($scope, $filter, $modal, NgTableParams, DHCPDHost, HostStateSrvc) {
 
   $scope.data = DHCPDHost.query();
 
@@ -52,7 +52,7 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
 
       if(host) {
 
-        if(item.mac != host.mac) {
+        if(item.mac !== host.mac) {
           // we have chaged primary ID, so remove the old item and add a newone
           host.$remove({dhcphost: host.mac}, function(data){
             item.$save(function(data){
@@ -93,6 +93,7 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
   };
 
   $scope.wakeHost = function($event, host){
+    HostStateSrvc.wake(host.mac);
     alert('waking ' + host.name + '@' + host.mac);
   };
 

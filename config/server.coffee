@@ -25,18 +25,18 @@ genItems = (cnt) ->
       ip: "192.168.1.#{idx+10}"
       mac: "aaaaaaaaaa#{idx+10}"
       desc: (idx % 4 == 1) && '' || "#{idx}th description"
+      state: idx % 2
       res: idx % 4 != 1
     addItem(item)
 
 genItems(20)
 
 
-
 module.exports =
   drawRoutes: (app) ->
+
     app.post '/login', (req, res) ->
       res.json({ message: 'logging in!' })
-
 
     app.post '/logout', (req, res) ->
       res.json({ message: 'logging out!'})
@@ -66,3 +66,13 @@ module.exports =
       item = _db[req.params.dhcphost]
       item.res = false;
       res.json(item)
+
+    app.get '/hoststate/:dhcphost', (req, res) ->
+      item = _db[req.params.dhcphost]
+      res.json(item.state)
+
+    app.put '/hoststate/:dhcphost', (req, res) ->
+      item = _db[req.params.dhcphost]
+      item.state = req.body.state
+      res.send 200
+
