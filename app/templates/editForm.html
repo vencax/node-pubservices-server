@@ -1,22 +1,46 @@
 
 <div class="modal-header">
-  <h3 class="modal-title">I'm a modal!</h3>
+  <h3 class="modal-title">Host edit form</h3>
 </div>
 
 <div class="modal-body">
-  <form>
-    <p>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="item.name" ngRequired="true" placeholder="Name">
-        <input type="text" class="form-control" ng-model="item.ip" ngRequired="true"placeholder="IP address">
-        <input type="text" class="form-control" ng-model="item.mac" ngRequired="true" placeholder="Mac address">
-        <input type="textarea" class="form-control" ng-model="item.desc" placeholder="Description">
+  <form name="hostform">
+
+    <div class="form-group has-feedback" ng-class="{'has-error': hostform.name.$invalid, 'has-success': hostform.name.$valid}">
+      <label class="control-label" for="name">Host name</label>
+      <input name="name" type="text" class="form-control" ng-model="item.name" required ng-minlength=3 ng-maxlength=15 placeholder="Name">
+      <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': hostform.name.$valid, 'glyphicon-remove': hostform.name.$invalid}"></span>
+      <div class="error-container" ng-show="hostform.name.$invalid">
+        <small class="text-danger" ng-show="hostform.name.$error.required">Please input a hostname</small>
+        <small class="text-danger" ng-show="hostform.name.$error.minlength">Host name must be at least 3 characters</small>
+        <small class="text-danger" ng-show="hostform.name.$error.maxlength">>Host name cannot be longer than 20 characters</small>
       </div>
-    </p>
+    </div>
+
+    <div class="form-group has-feedback" ng-class="{'has-error': hostform.mac.$invalid, 'has-success': hostform.mac.$valid}">
+      <label class="control-label" for="mac">Mac address</label>
+      <input mac-address name="mac" type="text" class="form-control" ng-model="item.mac" required placeholder="Mac address">
+      <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': hostform.mac.$valid, 'glyphicon-remove': hostform.mac.$invalid}"></span>
+      <div class="error-container" ng-show="hostform.mac.$invalid">
+        <small class="text-danger" ng-show="hostform.mac.$error.required">Please input host's mac address</small>
+        <small class="text-danger" ng-show="hostform.mac.$error.mac">Invalid MAC address (must be 12 hexa digits)</small>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error has-feedback': hostform.ip.$invalid}">
+      <label class="control-label" for="ip">Desired host's IP (optional)</label>
+      <input name="ip" type="text" class="form-control" ng-model="item.ip" placeholder="IP address">
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="desc">Description (optional)</label>
+      <input name="desc" type="textarea" class="form-control" ng-model="item.desc" placeholder="Description">
+    </div>
+
   </form>
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="ok()">OK</button>
+  <button class="btn btn-primary" ng-disabled="hostform.$invalid" ng-click="ok()">OK</button>
   <button class="btn btn-default" ng-click="cancel()">Cancel</button>
 </div>
