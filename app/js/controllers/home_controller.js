@@ -1,3 +1,7 @@
+
+// form zavrit az po uspechu
+// formatovat mac
+
 angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal', 'ngTableParams', 'DHCPDHost', 'HostStateSrvc', function($scope, $filter, $modal, NgTableParams, DHCPDHost, HostStateSrvc) {
 
   $scope.data = DHCPDHost.query();
@@ -36,6 +40,10 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
     dest.name = src.name;
   };
 
+  var _err_handler = function(err){
+    alert('request failed: ' + err.statusText + '\n\n' + err.data);
+  };
+
   $scope.editForm = function (host) {
 
     var modalInstance = $modal.open({
@@ -52,6 +60,14 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
 
       if(host) {
 
+        if (host.res === false) {
+          item.$save(function(data){
+            console.log('success, got data: ', data);
+            _copyHost(item, host);
+          }, _err_handler);
+          return;
+        }
+
         if(item.mac !== host.mac) {
           // we have chaged primary ID, so remove the old item and add a newone
           host.$remove({dhcphost: host.mac}, function(data){
@@ -64,9 +80,7 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
           item.$update({dhcphost:item.mac}, function(data){
             console.log('success, got data: ', data);
             _copyHost(item, host);
-          }, function(err){
-            alert('request failed ' + err);
-          });
+          }, _err_handler);
         }
 
       } else {
@@ -76,9 +90,7 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
           $scope.data.push($scope.newItem);
           $scope.tableParams.reload();
           $scope.newItem = new DHCPDHost({res: true});
-        }, function(err){
-          alert('request failed ' + err);
-        });
+        }, _err_handler);
 
       }
 
@@ -86,15 +98,10 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
 
   };
 
-  $scope.makeReservation = function($event, host){
-    host.$save(function(data){
-      console.log('success, got data: ', data);
-    });
-  };
-
   $scope.wakeHost = function($event, host){
-    HostStateSrvc.wake(host.mac);
-    alert('waking ' + host.name + '@' + host.mac);
+    HostStateSrvc.wake(host.mac, function(data){
+      alert('waking ' + host.name + '@' + host.mac);
+    }, _err_handler);
   };
 
   $scope.remove = function($event, host){

@@ -38,15 +38,18 @@
         </td>
 
         <td>
-            <button ng-hide="host.res" type="button" class="btn btn-xs btn-info" ng-click="makeReservation($event, host);">
+            <button ng-hide="host.res" type="button" class="btn btn-xs btn-info"
+                    ng-click="editForm(host);">
               <i class="glyphicon glyphicon-pushpin"></i> Make reservation
             </button>
 
-            <button ng-show="host.res" type="button" class="btn btn-xs btn-info" ng-click="editForm(host);">
+            <button ng-show="host.res" type="button" class="btn btn-xs btn-info"
+                    ng-click="editForm(host);">
               <i class="glyphicon glyphicon-pushpin"></i> Edit
             </button>
 
-            <button ng-show="host.res" type="button" class="btn btn-xs btn-danger" ng-click="remove($event, host);">
+            <button ng-show="host.res" type="button" class="btn btn-xs btn-danger"
+                    ng-click="remove($event, host);">
               <i class="glyphicon glyphicon-remove"></i> Remove reservation
             </button>
         </td>
