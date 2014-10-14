@@ -41,38 +41,35 @@ module.exports =
     app.post '/logout', (req, res) ->
       res.json({ message: 'logging out!'})
 
+    prefix = '/api'
 
-    app.get '/dhcphosts', (req, res) ->
+    app.get "#{prefix}/dhcphosts", (req, res) ->
       rv = []
       for k, v of _db
         rv.push v
       res.json(rv)
 
-    app.post '/dhcphosts', (req, res) ->
+    app.post "#{prefix}/dhcphosts", (req, res) ->
       req.body.res = true
       created = addItem(req.body)
-      console.log(_db)
       res.json(created)
 
-    app.put '/dhcphosts/:dhcphost', (req, res) ->
+    app.put "#{prefix}/dhcphosts/:dhcphost", (req, res) ->
       item = _db[req.params.dhcphost]
-      console.log(item);
       for k, v of req.body
         item[k] = v
-      console.log(item);
       res.json(item)
 
-    app.delete '/dhcphosts/:dhcphost', (req, res) ->
+    app.delete "#{prefix}/dhcphosts/:dhcphost", (req, res) ->
       item = _db[req.params.dhcphost]
       item.res = false;
       res.json(item)
 
-    app.get '/hoststate/:dhcphost', (req, res) ->
+    app.get "#{prefix}/hoststate/:dhcphost", (req, res) ->
       item = _db[req.params.dhcphost]
       res.json(item.state)
 
-    app.put '/hoststate/:dhcphost', (req, res) ->
+    app.put "#{prefix}/hoststate/:dhcphost", (req, res) ->
       item = _db[req.params.dhcphost]
       item.state = req.body.state
       res.send 200
-
