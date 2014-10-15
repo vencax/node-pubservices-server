@@ -1,6 +1,10 @@
 
 // formatovat mac
 
+var _err_handler = function(err){
+  alert('request failed: ' + err.statusText + '\n\n' + err.data);
+};
+
 angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal', 'ngTableParams', 'DHCPDHost', 'HostStateSrvc', function($scope, $filter, $modal, NgTableParams, DHCPDHost, HostStateSrvc) {
 
   $scope.data = DHCPDHost.query();
@@ -87,10 +91,6 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
 // edit form instance
 angular.module('app')
 .controller('ModalInstanceCtrl', function ($scope, $modalInstance, item, host) {
-
-  var _err_handler = function(err){
-    alert('request failed: ' + err.statusText + '\n\n' + err.data);
-  };
 
   $scope.item = item;
 
