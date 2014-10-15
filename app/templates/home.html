@@ -22,9 +22,15 @@
 
     <table ng-table="tableParams" show-filter="true" class="table table-stripped">
       <tr ng-repeat="host in $data" ng-class="{active: host.res == true}">
+
+        <td data-title="'Rsrvd'" sortable="'res'">
+          <span class="glyphicon" ng-class="{'glyphicon-link': host.res, 'glyphicon-random': !host.res}">
+        </td>
+
         <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">
           {{host.name}}
         </td>
+
         <td data-title="'IP address'" sortable="'ip'" filter="{ 'ip': 'text' }">
           {{host.ip}}
         </td>
