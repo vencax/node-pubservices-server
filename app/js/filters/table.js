@@ -10,5 +10,5 @@ angular.module('app').filter('formattedmac', function(){
       mac.slice(10, 12)
     ];
     return parts.join(":");
-  }
+  };
 });
