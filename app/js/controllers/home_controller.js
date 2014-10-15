@@ -72,9 +72,11 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
   };
 
   $scope.wakeHost = function($event, host){
-    HostStateSrvc.wake(host.mac, function(data){
-      alert('waking ' + host.name + '@' + host.mac);
-    }, _err_handler);
+    HostStateSrvc.wake(host.mac).
+      success(function(data){
+        alert('waking ' + host.name + '@' + host.mac);
+      }).
+      error(_err_handler);
   };
 
   $scope.remove = function($event, host){
