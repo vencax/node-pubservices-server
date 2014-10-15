@@ -27,9 +27,14 @@
       </div>
     </div>
 
-    <div class="form-group" ng-class="{'has-error has-feedback': hostform.ip.$invalid}">
-      <label class="control-label" for="ip">Desired host's IP (optional)</label>
-      <input name="ip" type="text" class="form-control" ng-model="item.ip" placeholder="IP address">
+    <div class="form-group has-feedback" ng-class="{'has-error': hostform.ip.$invalid, 'has-success': hostform.ip.$valid}">
+      <label class="control-label" for="ip">Desired host's IP</label>
+      <input name="ip" type="text" class="form-control" ng-model="item.ip" required placeholder="IP address">
+      <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': hostform.ip.$valid, 'glyphicon-remove': hostform.ip.$invalid}"></span>
+      <div class="error-container" ng-show="hostform.ip.$invalid">
+        <small class="text-danger" ng-show="hostform.ip.$error.required">Please input host's IP address</small>
+        <small class="text-danger" ng-show="hostform.ip.$error.ip">Invalid IP address (must be A.B.C.D)</small>
+      </div>
     </div>
 
     <div class="form-group">
