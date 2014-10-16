@@ -43,33 +43,33 @@ module.exports =
 
     prefix = '/api'
 
-    app.get "#{prefix}/dhcphosts", (req, res) ->
+    app.get "#{prefix}/dhcpdcfg/dhcphosts", (req, res) ->
       rv = []
       for k, v of _db
         rv.push v
       res.json(rv)
 
-    app.post "#{prefix}/dhcphosts", (req, res) ->
+    app.post "#{prefix}/dhcpdcfg/dhcphosts", (req, res) ->
       req.body.res = true
       created = addItem(req.body)
       res.json(created)
 
-    app.put "#{prefix}/dhcphosts/:dhcphost", (req, res) ->
+    app.put "#{prefix}/dhcpdcfg/dhcphosts/:dhcphost", (req, res) ->
       item = _db[req.params.dhcphost]
       for k, v of req.body
         item[k] = v
       res.json(item)
 
-    app.delete "#{prefix}/dhcphosts/:dhcphost", (req, res) ->
+    app.delete "#{prefix}/dhcpdcfg/dhcphosts/:dhcphost", (req, res) ->
       item = _db[req.params.dhcphost]
       item.res = false;
       res.json(item)
 
-    app.get "#{prefix}/hoststate/:dhcphost", (req, res) ->
+    app.get "#{prefix}/dhcpdcfg/hoststate/:dhcphost", (req, res) ->
       item = _db[req.params.dhcphost]
       res.json(item.state)
 
-    app.put "#{prefix}/hoststate/:dhcphost", (req, res) ->
+    app.put "#{prefix}/dhcpdcfg/hoststate/:dhcphost", (req, res) ->
       item = _db[req.params.dhcphost]
       item.state = req.body.state
       res.send 200
