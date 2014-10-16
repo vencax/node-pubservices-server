@@ -74,7 +74,7 @@ angular.module("app").controller('HomeController', ['$scope', '$filter', '$modal
   $scope.wakeHost = function($event, host){
     HostStateSrvc.wake(host.mac).
       success(function(data){
-        alert('waking ' + host.name + '@' + host.mac);
+        alert('waking ' + host.name + ':\n' + data);
       }).
       error(_err_handler);
   };
