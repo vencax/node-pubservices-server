@@ -1,11 +1,24 @@
-angular.module("app").controller('LoginController', function($scope, $location, AuthenticationService) {
-  $scope.credentials = { username: "", password: "" };
+var app = angular.module("app");
 
-  var onLoginSuccess = function() {
-    $location.path('/home');
-  };
+
+app.controller('LoginController', function($scope, $rootScope, $location, AuthenticationService) {
+
+  $scope.credentials = { uname: "ahoj", passwd: "" };
 
   $scope.login = function() {
-    AuthenticationService.login($scope.credentials).success(onLoginSuccess);
+    AuthenticationService.login($scope.credentials, function(err, user) {
+      if (err) {
+        return alert(err);
+      }
+      $location.path("/");
+      $rootScope.loggedUser = user;
+      return $rootScope.logout = function() {
+        return AuthenticationService.logout(function() {
+          $rootScope.loggedUser = '';
+          return $location.path("/login");
+        });
+      };
+    });
   };
+
 });
