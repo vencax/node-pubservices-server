@@ -38,7 +38,7 @@ module.exports =
     prefix = '/api'
 
     app.post "#{prefix}/login", (req, res) ->
-      res.json({ message: 'logging in!' })
+      res.json({ name: 'Gandalf The Gray', role: 0, uname: 'gandalf' })
 
     app.post "#{prefix}/logout", (req, res) ->
       res.json({ message: 'logging out!'})
