@@ -7,7 +7,7 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'LoginController'
   });
 
-  $routeProvider.when('/home', {
+  $routeProvider.when('/', {
     templateUrl: 'home.html',
     controller: 'HomeController'
   });
