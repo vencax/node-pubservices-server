@@ -4,6 +4,7 @@ var app = angular.module("app");
 app.controller('LoginController', function($scope, $rootScope, $location, AuthService) {
 
   $scope.credentials = { uname: "", passwd: "" };
+  $scope.errors = [];
 
   var _logout = function() {
     return AuthService.logout(function() {
@@ -14,6 +15,7 @@ app.controller('LoginController', function($scope, $rootScope, $location, AuthSe
 
   var _authServiceHandler = function(err, user) {
     if (err) {
+      $scope.errors.push(err);
       return alert(err);
     }
     $location.path("/");
