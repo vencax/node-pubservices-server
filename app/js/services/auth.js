@@ -2,7 +2,7 @@
 var app = angular.module("app");
 
 
-app.factory('AuthenticationService', function($http, $window, SessionService) {
+app.factory('AuthService', function($http, $window, SessionService) {
   // these routes map to stubbed API endpoints in config/server.js
   return {
     login: function(credentials, done) {
