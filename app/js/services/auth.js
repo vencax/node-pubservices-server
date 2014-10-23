@@ -36,6 +36,16 @@ app.factory('AuthService', function($http, $window, SessionService) {
 
     isLoggedIn: function() {
       return SessionService.currentUser !== null;
+    },
+
+    register: function(user, cb) {
+      $http.post('/api/auth/register', user)
+        .success(function(user) {
+          return cb(null, user);
+        })
+        .error(function(err) {
+          return cb(err);
+        });
     }
   };
 });

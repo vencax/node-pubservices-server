@@ -12,24 +12,7 @@ This file can be very useful for rapid prototyping or even organically
 defining a spec based on the needs of the client code that emerge.
 ###
 
-_db = {}
-
-addItem = (item) ->
-  _db[item.mac] = item
-  return item
-
-genItems = (cnt) ->
-  for idx in [1..cnt]
-    item =
-      name: "host#{idx}"
-      ip: "192.168.1.#{idx+10}"
-      mac: "aaaaaaaaaa#{idx+10}"
-      desc: (idx % 4 == 1) && '' || "#{idx}th description"
-      state: idx % 2
-      res: idx % 4 != 1
-    addItem(item)
-
-genItems(20)
+_users = {}
 
 
 module.exports =
@@ -53,33 +36,13 @@ module.exports =
     app.get "#{prefix}/auth/google/", (req, res) ->
       res.redirect('https://accounts.google.com/ServiceLogin');
 
-    app.get "#{prefix}/dhcpdcfg/dhcphosts", (req, res) ->
-      rv = []
-      for k, v of _db
-        rv.push v
-      res.json(rv)
+    app.post "#{prefix}/auth/check/", (req, res) ->
+      errs = []
+      errs.push 0 if req.body.email of _users
+      return res.status(200).send(errs)
 
-    app.post "#{prefix}/dhcpdcfg/dhcphosts", (req, res) ->
-      req.body.res = true
-      created = addItem(req.body)
-      res.json(created)
-
-    app.put "#{prefix}/dhcpdcfg/dhcphosts/:dhcphost", (req, res) ->
-      item = _db[req.params.dhcphost]
-      for k, v of req.body
-        item[k] = v
-      res.json(item)
-
-    app.delete "#{prefix}/dhcpdcfg/dhcphosts/:dhcphost", (req, res) ->
-      item = _db[req.params.dhcphost]
-      item.res = false;
-      res.json(item)
-
-    app.get "#{prefix}/dhcpdcfg/hoststate/:dhcphost", (req, res) ->
-      item = _db[req.params.dhcphost]
-      res.json(item.state)
-
-    app.put "#{prefix}/dhcpdcfg/hoststate/:dhcphost", (req, res) ->
-      item = _db[req.params.dhcphost]
-      item.state = req.body.state
-      res.send 200
+    app.post "#{prefix}/auth/register", (req, res) ->
+      return res.status(404).send("already exists") if req.body.email in _users
+      _users[req.body.email] = req.body
+      console.log(_users)
+      res.json(_users[req.body.email])

@@ -29,4 +29,8 @@ app.controller('LoginController', function($scope, $rootScope, $location, AuthSe
     AuthService.socialLogin(provider, _authServiceHandler);
   };
 
+  $scope.register = function() {
+    $location.path("/register");
+  };
+
 });
