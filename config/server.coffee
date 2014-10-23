@@ -47,6 +47,12 @@ module.exports =
     app.post "#{prefix}/logout", (req, res) ->
       res.json({ message: 'logging out!'})
 
+    app.get "#{prefix}/auth/facebook/", (req, res) ->
+      res.redirect('https://www.facebook.com/login.php');
+
+    app.get "#{prefix}/auth/google/", (req, res) ->
+      res.redirect('https://accounts.google.com/ServiceLogin');
+
     app.get "#{prefix}/dhcpdcfg/dhcphosts", (req, res) ->
       rv = []
       for k, v of _db
