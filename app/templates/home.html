@@ -1,73 +1,11 @@
 
 <p class="info" ng-hide="{{cfg.message}}" ng-model="cfg.message"></p>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-
-
-  </div>
-</div>
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <p>
-      <button type="button" class="btn btn-info" ng-click="editForm();">
-        <i class="glyphicon glyphicon-pushpin"></i> Add
-      </button>
-      <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
-      <button ng-click="tableParams.filter({})" class="btn btn-default pull-right">Clear filter</button>
-    </p>
-
-    <table ng-table="tableParams" show-filter="true" class="table table-stripped">
-      <tr ng-repeat="host in $data" ng-class="{active: host.res == true}">
-
-        <td data-title="'Rsrvd'" sortable="'res'">
-          <span class="glyphicon" ng-class="{'glyphicon-link': host.res, 'glyphicon-random': !host.res}">
-        </td>
-
-        <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">
-          {{host.name}}
-        </td>
-
-        <td data-title="'IP address'" sortable="'ip'" filter="{ 'ip': 'text' }">
-          {{host.ip}}
-        </td>
-
-        <td data-title="'MAC address'" filter="{ 'mac': 'text' }">
-          {{ host.mac | formattedmac }}
-        </td>
-
-        <td data-title="'description'" filter="{ 'desc': 'text' }">
-          {{host.desc}}
-        </td>
-
-        <td>
-            <button ng-hide="host.res" type="button" class="btn btn-xs btn-info"
-                    ng-click="editForm(host);">
-              <i class="glyphicon glyphicon-pushpin"></i> Make reservation
-            </button>
-
-            <button ng-show="host.res" type="button" class="btn btn-xs btn-info"
-                    ng-click="editForm(host);">
-              <i class="glyphicon glyphicon-pushpin"></i> Edit
-            </button>
-
-            <button ng-show="host.res" type="button" class="btn btn-xs btn-danger"
-                    ng-click="remove($event, host);">
-              <i class="glyphicon glyphicon-remove"></i> Remove reservation
-            </button>
-        </td>
-
-        <td>
-            <button type="button" class="btn btn-xs btn-success" ng-click="wakeHost($event, host);">
-              <i class="glyphicon glyphicon-off"></i> Wakeup
-            </button>
-        </td>
-
-      </tr>
-    </table>
+    <h1>This is Index!</h1>
 
   </div>
 </div>
