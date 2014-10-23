@@ -3,7 +3,7 @@ var app = angular.module("app");
 
 
 // add authentication
-app.run(function($rootScope, $location, AuthenticationService) {
+app.run(function($rootScope, $location, AuthService) {
 
   // enumerate routes that don't need authentication
   var routesNoRequiringAuth = ['/login'];
@@ -17,8 +17,7 @@ app.run(function($rootScope, $location, AuthenticationService) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
 
     // if route requires auth and user is not logged in
-    if ((! routeClean($location.url())) &&
-      (! AuthenticationService.isLoggedIn())) {
+    if ((! routeClean($location.url())) && (! AuthService.isLoggedIn())) {
       // redirect back to login
       $location.path("/login");
     }
