@@ -1,40 +1,64 @@
 
 <div class="row">
-  <div class="center-block col-md-3">
+  <div class="center-block col-md-6">
 
-    <form ng-submit="login()" class="form-signin" name="loginfrm" role="form">
+    <h2 class="form-signin-heading">Please log in</h2>
 
-      <h2 class="form-signin-heading">Please log in</h2>
+    <div class="row">
 
-      <div class="form-group">
-        <input type="text" name="uname" class="form-control" placeholder="Username"
-          required autofocus ng-model="credentials.uname">
+      <div class="col-md-6">
 
-        <div class="error-container" ng-show="loginfrm.uname.$invalid">
-          <small class="text-danger" ng-show="loginfrm.uname.$error.required">
-            Please input your username
-          </small>
-        </div>
+        <form class="form-signin" name="loginfrm" role="form">
+
+          <div class="form-group">
+            <input type="text" name="uname" class="form-control" placeholder="Username"
+              required autofocus ng-model="credentials.uname">
+
+            <div class="error-container" ng-show="loginfrm.uname.$invalid">
+              <small class="text-danger" ng-show="loginfrm.uname.$error.required">
+                Please input your username
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" name="passwd" class="form-control" placeholder="Password"
+              required ng-model="credentials.passwd">
+
+            <div class="error-container" ng-show="loginfrm.passwd.$invalid">
+              <small class="text-danger" ng-show="loginfrm.passwd.$error.required">
+                Please input your password
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block" data-ng-click="login();">
+              <span class="glyphicon glyphicon-user"></span> Log in
+            </button>
+
+            <button class="btn btn-lg btn-block" data-ng-click="">
+              <span class="glyphicon glyphicon-pencil"></span> Register
+            </button>
+          </div>
+
+        </form>
+
       </div>
 
-      <div class="form-group">
-        <input type="password" name="passwd" class="form-control" placeholder="Password"
-          required ng-model="credentials.passwd">
+      <!-- SOCIALS -->
+      <div class="col-md-6">
 
-        <div class="error-container" ng-show="loginfrm.passwd.$invalid">
-          <small class="text-danger" ng-show="loginfrm.passwd.$error.required">
-            Please input your password
-          </small>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-          <span class="glyphicon glyphicon-user"></span> Sign in
+        <button class="btn btn-block" data-ng-click="socialLogin('facebook');">
+          <span class="glyphicon glyphicon-user"></span> Facebook
         </button>
+
+        <button class="btn btn-block" data-ng-click="socialLogin('google');">
+          <span class="glyphicon glyphicon-user"></span> Google
+        </button>
+
       </div>
 
-    </form>
-
+    </div>
   </div>
 </div>
