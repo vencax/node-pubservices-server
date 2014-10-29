@@ -1,14 +1,16 @@
 {
-  "name": "angular-dhcp-conf",
+  "name": "angular-ticket-please",
   "version": "0.0.0",
   "homepage": "https://github.com/linemanjs/lineman-angular-template",
   "authors": [
     "Vaclav Klecanda <vencax77@gmail.com>"
   ],
-  "description": "Angular web client to rest-dhcpd-conf",
+  "description": "Angular web client for tickets buying app",
   "keywords": [
     "angular",
-    "dhcpd"
+    "tickets",
+    "transport",
+    "public"
   ],
   "license": "MIT",
   "private": true,
@@ -21,12 +23,13 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.25",
+    "angular": "~1.3.*",
     "bootstrap": "~3.2.0",
-    "angular-resource": "~1.2.25",
+    "angular-resource": "~1.2.*",
     "angular-route": "~1.2.25",
     "underscore": "~1.7.0",
     "ng-table": "~0.3.3",
-    "angular-bootstrap": "~0.11.2"
+    "angular-bootstrap": "~0.11.2",
+    "angular-cookies": "~1.3.0"
   }
 }
