@@ -11,13 +11,18 @@ var _adaptUser = function(user) {
 
 
 app.factory('AuthService', function($http, $window, SessionService) {
+
+  var _setUser = function(user) {
+    SessionService.currentUser = _adaptUser(user);
+    $window.sessionStorage.token = user.token;
+  };
+
   // these routes map to stubbed API endpoints in config/server.js
   return {
     login: function(credentials, done) {
-      $http.post('/api/login', credentials)
+      $http.post('/auth/login', credentials)
         .success(function(user){
-          SessionService.currentUser = _adaptUser(user);
-          $window.sessionStorage.token = user.token;
+          _setUser(user);
           return done(null, user);
         })
         .error(function(err){
@@ -25,13 +30,15 @@ app.factory('AuthService', function($http, $window, SessionService) {
         });
     },
 
+    setUser: _setUser,
+
     logout: function(done) {
       SessionService.currentUser = '';
       return done();
     },
 
     socialLogin: function(provider, cb) {
-      $window.location.href = '/api/auth/' + provider + '/';
+      $window.location.href = '/auth/' + provider + '/';
     },
 
     isLoggedIn: function() {
@@ -39,7 +46,7 @@ app.factory('AuthService', function($http, $window, SessionService) {
     },
 
     register: function(user, cb) {
-      $http.post('/api/auth/register', user)
+      $http.post('/auth/register', user)
         .success(function(user) {
           return cb(null, user);
         })
