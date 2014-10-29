@@ -3,7 +3,7 @@ var app = angular.module("app");
 
 app.controller('LoginController', function($scope, $rootScope, $location, $cookies, AuthService) {
 
-  $scope.credentials = { uname: "", passwd: "" };
+  $scope.credentials = { username: "", password: "" };
   $scope.errors = [];
 
   var _onLoggedIn = function() {

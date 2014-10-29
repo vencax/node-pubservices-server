@@ -10,7 +10,7 @@
     |
     <a href="#" data-ng-click="socialLogin('google');">Google</a>
     |
-    <a href="#" data-ng-click="socialLogin('google');">Twitter</a>
+    <a href="#" data-ng-click="socialLogin('twitter');">Twitter</a>
 
     <hr>
 
@@ -18,7 +18,7 @@
 
       <div class="form-group">
         <input type="text" name="uname" class="form-control" placeholder="Username"
-          required autofocus ng-model="credentials.uname">
+          required autofocus ng-model="credentials.username">
 
         <div class="error-container" ng-show="loginfrm.uname.$dirty && loginfrm.uname.$invalid">
           <small class="text-danger" ng-show="loginfrm.uname.$error.required">
@@ -29,7 +29,7 @@
 
       <div class="form-group">
         <input type="password" name="passwd" class="form-control" placeholder="Password"
-          required ng-model="credentials.passwd">
+          required ng-model="credentials.password">
 
         <div class="error-container" ng-show="loginfrm.passwd.$dirty && loginfrm.passwd.$invalid">
           <small class="text-danger" ng-show="loginfrm.passwd.$error.required">
