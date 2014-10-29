@@ -14,7 +14,7 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
 
   $routeProvider.when('/', {
     templateUrl: 'home.html',
-    controller: 'HomeController'
+    controller: 'HomeCtrl'
   });
 
   $routeProvider.otherwise({ redirectTo: '/' });

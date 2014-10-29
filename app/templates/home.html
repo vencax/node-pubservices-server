@@ -1,11 +1,34 @@
 
-<p class="info" ng-hide="{{cfg.message}}" ng-model="cfg.message"></p>
-
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <h1>This is Index!</h1>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+
+    <h1>Jízdenky na MHD</h1>
+
+    <p>Nejaky keci</p>
 
   </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+
+    <h2>Zakoupené jízdenky</h2>
+
+    <ul data-ng-repeat="t in tickets">
+      <li>{{ t }}</li>
+    </ul>
+
+    <h2>Vyber jízdenku</h2>
+
+    <p class="info" ng-hide="{{cfg.message}}" ng-model="cfg.message"></p>
+
+    <ul data-ng-repeat="t in data">
+      <li class="ticket" data-ng-click="buy(t);">
+        <img src="{{ t.url }}" alt="obrázek jízdenky" />
+        <h4>{{ t.desc }}</h4>
+        <p>{{ t.amount }}</p>
+      </li>
+    </ul>
+  </div>
+
 </div>

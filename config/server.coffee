@@ -12,37 +12,65 @@ This file can be very useful for rapid prototyping or even organically
 defining a spec based on the needs of the client code that emerge.
 ###
 
-_users = {}
+_gandalf =
+  first_name: 'Gandalf'
+  last_name: 'The Gray'
+  role: 0
+  uname: 'gandalf'
+  credit: 25
+  token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mywi"
 
+_products =
+  1: {id: 1, desc: "za 10", amount: 10, valid: 4, url: 'http://www.comettplus.cz/img/listek10p.jpg'}
+  2: {id: 2, desc: "za 12", amount: 12, valid: 8, url: 'http://www.comettplus.cz/img/listek12p.jpg'}
+  3: {id: 3, desc: "za 14", amount: 14, valid: 18, url: 'http://www.comettplus.cz/img/listek14p.jpg'}
+  4: {id: 4, desc: "za 16", amount: 16, valid: 60, url: 'http://www.comettplus.cz/img/listek16p.jpg'}
+
+_users = {}
+_buyed = {}
+_next_buyed = 0
 
 module.exports =
   drawRoutes: (app) ->
 
-    prefix = '/api'
+    app.post "/auth/login", (req, res) ->
+      res.json(_gandalf)
 
-    app.post "#{prefix}/login", (req, res) ->
-      res.json({
-        first_name: 'Gandalf', last_name: 'The Gray',
-        role: 0, uname: 'gandalf',
-        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mywi"
-      })
-
-    app.post "#{prefix}/logout", (req, res) ->
+    app.post "/auth/logout", (req, res) ->
       res.json({ message: 'logging out!'})
 
-    app.get "#{prefix}/auth/facebook/", (req, res) ->
+    app.get "/auth/facebook", (req, res) ->
       res.redirect('https://www.facebook.com/login.php');
 
-    app.get "#{prefix}/auth/google/", (req, res) ->
+    app.get "/auth/google", (req, res) ->
       res.redirect('https://accounts.google.com/ServiceLogin');
 
-    app.post "#{prefix}/auth/check/", (req, res) ->
+    app.post "/auth/check", (req, res) ->
       errs = []
       errs.push 0 if req.body.email of _users
       return res.status(200).send(errs)
 
-    app.post "#{prefix}/auth/register", (req, res) ->
+    app.post "/auth/register", (req, res) ->
       return res.status(404).send("already exists") if req.body.email in _users
       _users[req.body.email] = req.body
       console.log(_users)
       res.json(_users[req.body.email])
+
+    # -------------- API ---------------
+
+    prefix = '/api'
+
+    app.get "#{prefix}/tickets", (req, res) ->
+      res.json(v for k, v of _products)
+
+    app.post "#{prefix}/buy/:id", (req, res) ->
+      if _gandalf.credit >= _products[req.params.id].amount
+        _gandalf.credit -= _products[req.params.id].amount
+        _next_buyed += 1
+        _buyed[_next_buyed] = {id: _next_buyed, prod: req.params.id}
+        res.status(201).json(_buyed[_next_buyed])
+      else
+        res.status(400).json()
+
+    app.get "#{prefix}/valid", (req, res) ->
+      res.json({ valid: true})
