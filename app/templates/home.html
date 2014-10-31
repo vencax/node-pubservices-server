@@ -22,7 +22,9 @@
       <li>
         <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
         <p>ID: {{ t.id }}</p>
-        <p>Valid till: {{ t.expires }}</p>
+        <p>Valid till: <br>
+          {{ t.expires | nicedate }}
+        </p>
       </li>
     </ul>
 
