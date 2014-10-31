@@ -4,6 +4,8 @@ var app = angular.module("app", [
 
 app.run(function($rootScope, $location, AuthService, TicketSrvc) {
 
+  moment.locale(navigator.language);
+
   if(AuthService.getCurrentUser()) {
     $rootScope.loggedUser = AuthService.getCurrentUser();
     TicketSrvc.credit($rootScope.loggedUser).success(function(credit){

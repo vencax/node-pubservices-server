@@ -9,7 +9,7 @@
       <tr data-ng-repeat="i in items"
         data-ng-class="{'success': i.amount > 0, 'warning': i.amount < 0}">
         <td>{{ i.id }}</td>
-        <td>{{ i.createdAt }}</td>
+        <td>{{ i.createdAt | nicedate }}</td>
         <td>{{ i.amount }}</td>
         <td>{{ i.desc }}</td>
       </tr>
