@@ -1,8 +1,23 @@
 var app = angular.module("app", [
-  "ngResource", "ngRoute", "ngTable", "ngCookies", "ui.bootstrap"
+  "ngResource", "ngRoute", "ngTable", "ngCookies", "ui.bootstrap", "ngStorage"
 ]);
 
-app.run(function($rootScope) {
+app.run(function($rootScope, $location, AuthService, TicketSrvc) {
+
+  if(AuthService.getCurrentUser()) {
+    $rootScope.loggedUser = AuthService.getCurrentUser();
+    TicketSrvc.credit($rootScope.loggedUser).success(function(credit){
+      $rootScope.loggedUser.credit = credit;
+    });
+  }
+
+  $rootScope.logout = function() {
+    return AuthService.logout(function() {
+      $rootScope.loggedUser = '';
+      return $location.path("/login");
+    });
+  };
+
   // adds some basic utilities to the $rootScope for debugging purposes
   $rootScope.log = function(thing) {
     console.log(thing);

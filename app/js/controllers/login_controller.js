@@ -9,14 +9,8 @@ app.controller('LoginController', function($scope, $rootScope, $location, $cooki
   var _onLoggedIn = function(user) {
     $location.path("/");
     $rootScope.loggedUser = user;
-    $rootScope.logout = function() {
-      return AuthService.logout(function() {
-        $rootScope.loggedUser = '';
-        return $location.path("/login");
-      });
-    };
     TicketSrvc.credit(user).success(function(credit){
-      $rootScope.credit = credit;
+      user.credit = credit;
     });
   };
 

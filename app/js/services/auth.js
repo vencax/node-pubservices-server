@@ -10,11 +10,11 @@ var _adaptUser = function(user) {
 };
 
 
-app.factory('AuthService', function($http, $window, SessionService) {
+app.factory('AuthService', function($http, $window, $rootScope, $localStorage) {
 
   var _setUser = function(user) {
-    SessionService.currentUser = _adaptUser(user);
-    $window.sessionStorage.token = user.token;
+    $localStorage.currentUser = _adaptUser(user);
+    $localStorage.token = user.token;
   };
 
   // these routes map to stubbed API endpoints in config/server.js
@@ -33,7 +33,8 @@ app.factory('AuthService', function($http, $window, SessionService) {
     setUser: _setUser,
 
     logout: function(done) {
-      SessionService.currentUser = '';
+      delete $localStorage.currentUser;
+      delete $localStorage.token;
       return done();
     },
 
@@ -41,8 +42,12 @@ app.factory('AuthService', function($http, $window, SessionService) {
       $window.location.href = '/auth/' + provider + '/';
     },
 
+    getCurrentUser: function() {
+      return $localStorage.currentUser || null;
+    },
+
     isLoggedIn: function() {
-      return SessionService.currentUser !== null;
+      return $localStorage.hasOwnProperty('currentUser');
     },
 
     register: function(user, cb) {
@@ -54,12 +59,5 @@ app.factory('AuthService', function($http, $window, SessionService) {
           return cb(err);
         });
     }
-  };
-});
-
-
-app.factory('SessionService', function() {
-  return {
-    currentUser: null
   };
 });

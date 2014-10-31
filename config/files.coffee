@@ -29,6 +29,7 @@ module.exports = (lineman) ->
       "vendor/bower/angular-cookies/angular-cookies.js",
       "vendor/bower/angular-route/angular-route.js",
       "vendor/bower/ng-table/ng-table.js",
+      "vendor/bower/ngstorage/ngStorage.js",
       "vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js"
     ],
     app: [
