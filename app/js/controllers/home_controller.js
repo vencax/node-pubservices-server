@@ -11,12 +11,14 @@ angular.module("app").controller('HomeCtrl', function($scope, $rootScope, $locat
     $scope.data = data;
   });
 
-  $scope.tickets = [];
+  TicketSrvc.validtickets().success(function(tickets) {
+    $scope.tickets = tickets;
+  });
 
   $scope.buy = function(ticket) {
     if (AuthService.isLoggedIn()) {
       TicketSrvc.buy(ticket).success(function(data) {
-        $rootScope.loggedUser.credit -= ticket.amount;
+        $rootScope.credit -= ticket.amount;
         $scope.tickets.push(data);
       }).error(function(err){
         if (err.status === 400) {

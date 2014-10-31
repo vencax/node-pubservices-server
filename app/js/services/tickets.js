@@ -13,8 +13,16 @@ app.factory('TicketSrvc', function($http) {
       return $http.post('/api/buy/' + ticket.id);
     },
 
-    valid: function(id) {
+    isvalid: function(id) {
       return $http.get('/api/valid/' + id);
+    },
+
+    validtickets: function() {
+      return $http.get('/api/valid');
+    },
+
+    credit: function(user) {
+      return $http.get('/api/credit/' + user.id);
     }
   };
 });

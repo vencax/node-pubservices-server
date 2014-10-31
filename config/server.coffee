@@ -13,6 +13,7 @@ defining a spec based on the needs of the client code that emerge.
 ###
 
 _gandalf =
+  id: 111
   first_name: 'Gandalf'
   last_name: 'The Gray'
   role: 0
@@ -63,14 +64,23 @@ module.exports =
     app.get "#{prefix}/tickets", (req, res) ->
       res.json(v for k, v of _products)
 
+    app.get "#{prefix}/credit/:id", (req, res) ->
+      res.json(_gandalf.credit)
+
     app.post "#{prefix}/buy/:id", (req, res) ->
       if _gandalf.credit >= _products[req.params.id].amount
         _gandalf.credit -= _products[req.params.id].amount
         _next_buyed += 1
-        _buyed[_next_buyed] = {id: _next_buyed, prod: req.params.id}
+        _buyed[_next_buyed] =
+          id: _next_buyed
+          prod: req.params.id
+          when: new Date()
         res.status(201).json(_buyed[_next_buyed])
       else
         res.status(400).json()
 
-    app.get "#{prefix}/valid", (req, res) ->
+    app.get "#{prefix}/valid/:id", (req, res) ->
       res.json({ valid: true})
+
+    app.get "#{prefix}/valid", (req, res) ->
+      res.json(v for k, v of _buyed)

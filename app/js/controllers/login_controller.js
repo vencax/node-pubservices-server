@@ -1,12 +1,12 @@
 var app = angular.module("app");
 
 
-app.controller('LoginController', function($scope, $rootScope, $location, $cookies, AuthService) {
+app.controller('LoginController', function($scope, $rootScope, $location, $cookies, AuthService, TicketSrvc) {
 
   $scope.credentials = { username: "", password: "" };
   $scope.errors = [];
 
-  var _onLoggedIn = function() {
+  var _onLoggedIn = function(user) {
     $location.path("/");
     $rootScope.loggedUser = user;
     $rootScope.logout = function() {
@@ -15,12 +15,15 @@ app.controller('LoginController', function($scope, $rootScope, $location, $cooki
         return $location.path("/login");
       });
     };
+    TicketSrvc.credit(user).success(function(credit){
+      $rootScope.credit = credit;
+    });
   };
 
   if ($cookies.authinfo) {
     var user = JSON.parse($cookies.authinfo);
     AuthService.setUser(user);
-    _onLoggedIn();
+    _onLoggedIn(user);
   }
 
   var _authServiceHandler = function(err, user) {
@@ -28,7 +31,7 @@ app.controller('LoginController', function($scope, $rootScope, $location, $cooki
       $scope.errors.push(err);
       return alert(err);
     }
-    _onLoggedIn();
+    _onLoggedIn(user);
   };
 
   $scope.login = function() {
