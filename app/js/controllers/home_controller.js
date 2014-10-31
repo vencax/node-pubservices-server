@@ -20,8 +20,8 @@ angular.module("app").controller('HomeCtrl', function($scope, $rootScope, $locat
       TicketSrvc.buy(ticket).success(function(data) {
         $rootScope.credit -= ticket.amount;
         $scope.tickets.push(data);
-      }).error(function(err){
-        if (err.status === 400) {
+      }).error(function(err, status){
+        if (status === 400) {
           alert('Not enough money!');
         }
       });
