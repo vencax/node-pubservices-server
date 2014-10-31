@@ -18,8 +18,12 @@
 
     <h2>Platné jízdenky</h2>
 
+    <div class="alert alert-danger" role="alert" data-ng-show="tickets.length === 0">
+      You have no valid ticket!
+    </div>
+
     <ul class="ticket" data-ng-repeat="t in tickets">
-      <li>
+      <li class="pull-left">
         <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
         <p>ID: {{ t.id }}</p>
         <p>Valid till: <br>

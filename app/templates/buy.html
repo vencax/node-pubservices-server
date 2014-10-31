@@ -9,7 +9,7 @@
     <p class="info" ng-hide="{{cfg.message}}" ng-model="cfg.message"></p>
 
     <ul class="ticket" data-ng-repeat="t in data">
-      <li data-ng-click="buy(t);">
+      <li data-ng-click="buy(t);" class="pull-left">
         <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
         <h4>{{ t.desc }}</h4>
         <p>{{ t.amount }}</p>
