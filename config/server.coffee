@@ -36,7 +36,13 @@ _buyed = {
 _crediAccounts = {
   111: {uid: 111, state: 30}
 }
-_next_buyed = 4
+_next_buyed = 5
+_expirations = {}
+
+_isValid = (ticketID) ->
+  return false if ticketID not of _expirations
+  return _expirations[ticketID].expires > new Date()
+
 
 module.exports =
   drawRoutes: (app) ->
@@ -76,15 +82,24 @@ module.exports =
       product = _products[req.params.id]
       if curr.state >= product.amount
         curr.state -= product.amount
-        _next_buyed += 1
-
-        _buyed[_next_buyed] =
+        change =
           id: _next_buyed
           desc: "Buy of #{product.desc}"
           amount: -product.amount
           createdAt: new Date()
           uid: 111
-        res.status(201).json(_buyed[_next_buyed])
+
+        _buyed[_next_buyed] = change
+        validInMilis = (product.valid * 60 * 1000)
+        _expirations[_next_buyed] =
+          expires: new Date(change.createdAt.getTime() + validInMilis)
+          product: product
+        rv =
+          expires: _expirations[_next_buyed].expires
+          id: _next_buyed
+          url: product.url
+        res.status(201).json(rv)
+        _next_buyed += 1
       else
         res.status(400).json()
 
@@ -92,7 +107,15 @@ module.exports =
       res.json({ valid: true})
 
     app.get "#{prefix}/valid", (req, res) ->
-      res.json(v for k, v of _buyed)
+      rv = []
+      for k, e of _expirations
+        if e.expires > new Date()
+          v =
+            expires: e.expires
+            id: k
+            url: e.product.url
+          rv.push(v)
+      res.json(rv)
 
     # ------------------ credit --------------------
 
