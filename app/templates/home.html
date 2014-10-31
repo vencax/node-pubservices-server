@@ -24,7 +24,7 @@
 
     <ul data-ng-repeat="t in data">
       <li class="ticket" data-ng-click="buy(t);">
-        <img src="{{ t.url }}" alt="obrázek jízdenky" />
+        <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
         <h4>{{ t.desc }}</h4>
         <p>{{ t.amount }}</p>
       </li>
