@@ -20,7 +20,7 @@
       <div class="form-group">
         <input type="email" name="email" class="form-control" placeholder="Email"
           required data-ng-validator="email"
-          data-unique="/api/auth/check/" autofocus ng-model="user.email">
+          data-unique="/auth/check" autofocus ng-model="user.email">
 
         <div class="error-container" ng-show="frm.email.$invalid">
           <small class="text-danger" ng-show="frm.email.$error.required">
