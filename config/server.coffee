@@ -18,7 +18,6 @@ _gandalf =
   last_name: 'The Gray'
   role: 0
   uname: 'gandalf'
-  credit: 25
   token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mywi"
 
 _products =
@@ -28,8 +27,16 @@ _products =
   4: {id: 4, desc: "za 16", amount: 16, valid: 60, url: 'http://www.comettplus.cz/img/listek16p.jpg'}
 
 _users = {}
-_buyed = {}
-_next_buyed = 0
+_buyed = {
+  1: {id: 1, uid: 111, desc: "predplaceno 70", amount: 70, createdAt: new Date(2014, 9, 27)},
+  2: {id: 2, uid: 111, desc: "listek za 10", amount: -10, createdAt: new Date(2014, 9, 28)},
+  3: {id: 3, uid: 111, desc: "listek za 14", amount: -14, createdAt: new Date(2014, 9, 30)},
+  4: {id: 4, uid: 111, desc: "listek za 16", amount: -16, createdAt: new Date(2014, 10, 11)},
+}
+_crediAccounts = {
+  111: {uid: 111, state: 30}
+}
+_next_buyed = 5
 
 module.exports =
   drawRoutes: (app) ->
@@ -64,9 +71,6 @@ module.exports =
     app.get "#{prefix}/tickets", (req, res) ->
       res.json(v for k, v of _products)
 
-    app.get "#{prefix}/credit/:id", (req, res) ->
-      res.json(_gandalf.credit)
-
     app.post "#{prefix}/buy/:id", (req, res) ->
       if _gandalf.credit >= _products[req.params.id].amount
         _gandalf.credit -= _products[req.params.id].amount
@@ -84,3 +88,12 @@ module.exports =
 
     app.get "#{prefix}/valid", (req, res) ->
       res.json(v for k, v of _buyed)
+
+    # ------------------ credit --------------------
+
+    app.get "#{prefix}/credit/history", (req, res) ->
+      rv = (v for k, v of _buyed)
+      res.json(rv)
+
+    app.get "#{prefix}/credit/:id", (req, res) ->
+      res.json(_crediAccounts[req.params.id])

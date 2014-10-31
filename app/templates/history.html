@@ -1,0 +1,20 @@
+
+<h1>Credit history</h1>
+
+<div class="row">
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <table class="table table-hover">
+      <tr data-ng-repeat="i in items"
+        data-ng-class="{'success': i.amount > 0, 'warning': i.amount < 0}">
+        <td>{{ i.id }}</td>
+        <td>{{ i.createdAt }}</td>
+        <td>{{ i.amount }}</td>
+        <td>{{ i.desc }}</td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>

@@ -21,6 +21,10 @@ app.factory('TicketSrvc', function($http) {
       return $http.get('/api/valid');
     },
 
+    credithistory: function() {
+      return $http.get('/api/credit/history');
+    },
+
     credit: function(user) {
       return $http.get('/api/credit/' + user.id);
     }
