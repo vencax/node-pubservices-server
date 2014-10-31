@@ -47,11 +47,10 @@ app.config(function($httpProvider) {
       },
 
       responseError: function(rejection) {
-        if (response.status === 401) {
+        if (rejection.status === 401) {
           $location.url('/login');
         }
-        alert('Request rejected: ' + rejection);
-        return rejection;
+        return $q.reject(rejection);
       }
     };
   });
