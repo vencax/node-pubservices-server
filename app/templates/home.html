@@ -8,27 +8,22 @@
 
     <p>Nejaky keci</p>
 
+    <a class="btn btn-primary btn-lg" href="/buy" role="button">
+      Buy!
+    </a>
+
   </div>
 
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+  <div data-ng-show="!!loggedUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
 
-    <h2>Zakoupené jízdenky</h2>
+    <h2>Platné jízdenky</h2>
 
-    <ul data-ng-repeat="t in tickets">
-      <li>{{ t }}</li>
-    </ul>
-
-    <h2>Vyber jízdenku</h2>
-
-    <p class="info" ng-hide="{{cfg.message}}" ng-model="cfg.message"></p>
-
-    <ul data-ng-repeat="t in data">
-      <li class="ticket" data-ng-click="buy(t);">
+    <ul class="ticket" data-ng-repeat="t in tickets">
+      <li>
         <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
-        <h4>{{ t.desc }}</h4>
-        <p>{{ t.amount }}</p>
+        <p>ID: {{ t.id }}</p>
+        <p>Valid till: {{ t.expires }}</p>
       </li>
     </ul>
-  </div>
 
 </div>
