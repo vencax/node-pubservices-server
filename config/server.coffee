@@ -36,7 +36,7 @@ _buyed = {
 _crediAccounts = {
   111: {uid: 111, state: 30}
 }
-_next_buyed = 5
+_next_buyed = 4
 
 module.exports =
   drawRoutes: (app) ->
@@ -72,13 +72,18 @@ module.exports =
       res.json(v for k, v of _products)
 
     app.post "#{prefix}/buy/:id", (req, res) ->
-      if _gandalf.credit >= _products[req.params.id].amount
-        _gandalf.credit -= _products[req.params.id].amount
+      curr = _crediAccounts[_gandalf.id]
+      product = _products[req.params.id]
+      if curr.state >= product.amount
+        curr.state -= product.amount
         _next_buyed += 1
+
         _buyed[_next_buyed] =
           id: _next_buyed
-          prod: req.params.id
-          when: new Date()
+          desc: "Buy of #{product.desc}"
+          amount: -product.amount
+          createdAt: new Date()
+          uid: 111
         res.status(201).json(_buyed[_next_buyed])
       else
         res.status(400).json()
@@ -96,4 +101,4 @@ module.exports =
       res.json(rv)
 
     app.get "#{prefix}/credit/:id", (req, res) ->
-      res.json(_crediAccounts[req.params.id])
+      res.json(_crediAccounts[req.params.id].state)
