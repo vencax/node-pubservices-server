@@ -17,6 +17,11 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'RegisterCtrl'
   });
 
+  $routeProvider.when('/buy', {
+    templateUrl: 'buy.html',
+    controller: 'BuyCtrl'
+  });
+
   $routeProvider.when('/', {
     templateUrl: 'home.html',
     controller: 'HomeCtrl'

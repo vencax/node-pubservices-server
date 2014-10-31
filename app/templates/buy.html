@@ -1,0 +1,21 @@
+
+
+<div class="row">
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <h2>Vyber jízdenku</h2>
+
+    <p class="info" ng-hide="{{cfg.message}}" ng-model="cfg.message"></p>
+
+    <ul class="ticket" data-ng-repeat="t in data">
+      <li data-ng-click="buy(t);">
+        <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
+        <h4>{{ t.desc }}</h4>
+        <p>{{ t.amount }}</p>
+      </li>
+    </ul>
+
+  </div>
+
+</div>
