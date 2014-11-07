@@ -47,6 +47,8 @@ _isValid = (ticketID) ->
 module.exports =
   drawRoutes: (app) ->
 
+    app.use(require('cors')({maxAge: 86400}));
+
     app.post "/auth/login", (req, res) ->
       res.json(_gandalf)
 
@@ -118,6 +120,10 @@ module.exports =
       res.json(rv)
 
     # ------------------ credit --------------------
+
+    app.get "#{prefix}/credit/up", (req, res) ->
+      _crediAccounts[_gandalf.id].state += 100
+      res.json({message: "OK"})
 
     app.get "#{prefix}/credit/history", (req, res) ->
       rv = (v for k, v of _buyed)

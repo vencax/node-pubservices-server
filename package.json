@@ -19,5 +19,8 @@
   "scripts": {
     "start": "lineman run",
     "test": "lineman spec-ci"
+  },
+  "dependencies": {
+    "cors": "^2.5.0"
   }
 }
