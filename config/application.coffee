@@ -36,6 +36,7 @@ module.exports = (lineman) ->
 
   server:
     pushState: true
+    web: { port: process.env.PORT || 8000; }
     # API Proxying
 
     # During development, you'll likely want to make XHR (AJAX) requests to an API on the same
@@ -63,4 +64,3 @@ module.exports = (lineman) ->
   #via grunt-asset-fingerprint
 #
   #enableAssetFingerprint: true
-
