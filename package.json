@@ -1,13 +1,18 @@
 {
-  "name": "lineman-angular-template",
-  "title": "An HTML/JS/CSS app using Angular.JS",
+  "name": "angular-pubtrans-tickets",
+  "title": "Angular frontend for public trasport tickets app",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "author": {
     "name": "John Doe",
     "company": "ACME, Inc."
   },
-  "devDependencies": {
+  "scripts": {
+    "start": "lineman run",
+    "test": "lineman spec-ci"
+  },
+  "dependencies": {
+    "cors": "^2.5.0",
     "coffee-script": "^1.6.3",
     "jasmine-given": "^2.6.2",
     "lineman": "^0.34.0",
@@ -15,12 +20,5 @@
     "lineman-bower": "0.0.5",
     "lineman-less": "0.0.1",
     "protractor": "^1.2.0-beta1"
-  },
-  "scripts": {
-    "start": "lineman run",
-    "test": "lineman spec-ci"
-  },
-  "dependencies": {
-    "cors": "^2.5.0"
   }
 }
