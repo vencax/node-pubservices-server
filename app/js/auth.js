@@ -29,25 +29,19 @@ app.run(function($rootScope, $location, AuthService) {
 // inject authorization header into outgoing reqs
 app.config(function($httpProvider) {
 
-  $httpProvider.interceptors.push(function($q, $location, $window) {
+  $httpProvider.interceptors.push(function($q, $location, $localStorage, $rootScope) {
     return {
       request: function(config) {
         config.headers = config.headers || {};
-        if ($window.sessionStorage.token) {
-          config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+        if ($localStorage.token) {
+          config.headers.Authorization = 'Bearer ' + $localStorage.token;
         }
         return config;
       },
 
-      response: function(response) {
-        if (response.status === 401) {
-          $location.url('/login');
-        }
-        return response || $q.when(response);
-      },
-
       responseError: function(rejection) {
         if (rejection.status === 401) {
+          $rootScope.loggedUser = null;
           $location.url('/login');
         }
         return $q.reject(rejection);
