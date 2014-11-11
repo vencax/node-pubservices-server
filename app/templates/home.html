@@ -2,7 +2,7 @@
 
 <div class="row">
 
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+  <div data-ng-hide="!!loggedUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
     <h1>Jízdenky na MHD</h1>
 
@@ -14,22 +14,33 @@
 
   </div>
 
-  <div data-ng-show="!!loggedUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+  <div data-ng-show="!!loggedUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <h2>Platné jízdenky</h2>
+    <h1>Platné jízdenky</h1>
 
-    <div class="alert alert-danger" role="alert" data-ng-show="tickets.length === 0">
+    <div class="alert alert-danger" role="alert" data-ng-hide="tickets.length > 0">
       You have no valid ticket!
     </div>
 
-    <ul class="ticket" data-ng-repeat="t in tickets">
-      <li class="pull-left">
-        <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
-        <p>ID: {{ t.id }}</p>
-        <p>Valid till: <br>
-          {{ t.expires | nicedate }}
-        </p>
-      </li>
-    </ul>
+    <table class="table table-hover" data-ng-show="tickets.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Remaining</th>
+          <th>Expires</th>
+          <th>Desc</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="t in tickets">
+          <td>#{{ t.id }}</td>
+          <td>{{ t.remains }}</td>
+          <td>{{ t.expires | nicedate }}</td>
+          <td>{{ t.desc }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
 
 </div>
