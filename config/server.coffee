@@ -115,7 +115,7 @@ module.exports =
           v =
             expires: e.expires
             id: k
-            url: e.product.url
+            desc: e.product.desc
           rv.push(v)
       res.json(rv)
 
