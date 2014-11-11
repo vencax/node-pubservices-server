@@ -129,5 +129,5 @@ module.exports =
       rv = (v for k, v of _buyed)
       res.json(rv)
 
-    app.get "#{prefix}/credit/:id", (req, res) ->
+    app.get "#{prefix}/credit/current/:id", (req, res) ->
       res.json(_crediAccounts[req.params.id].state)

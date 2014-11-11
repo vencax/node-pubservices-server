@@ -26,7 +26,7 @@ app.factory('TicketSrvc', function($http) {
     },
 
     credit: function(user) {
-      return $http.get('/api/credit/' + user.id);
+      return $http.get('/api/credit/current/' + user.id);
     }
   };
 });
