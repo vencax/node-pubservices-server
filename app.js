@@ -1,52 +1,14 @@
 var express = require('express')
   , bodyParser = require('body-parser')
+  , nassa = require('node-angular-server-side-auth')
   , app = express();
 
 
 module.exports = function(db) {
-  // // create auth API -----------------------------------------------------------
-  // var manip = {
-  //   find: function(uname, done) {
-  //     return done(null, {id: 111, uname: uname, name: uname});
-  //   },
-  //
-  //   create: function(props, done) {
-  //     return User(props);
-  //   },
-  //
-  //   save: function(user, done) {
-  //     return done(null, user);
-  //   },
-  //
-  //   validPassword: function(user, passwd) {
-  //     return true;
-  //   }
-  // };
-  var sqlManip = {
-    find: function(uname, done) {
-      db.User.find({where: {email: uname}}).success(function(found) {
-        return done(null, found.dataValues);
-      });
-    },
 
-    create: function(props, done) {
-      return db.User.create(props).success(function(created) {
-        done(null, created);
-      });
-    },
-
-    save: function(user, done) {
-      user.save().success(function(saved) {
-        return done(null, saved);
-      });
-    },
-
-    validPassword: function(user, passwd) {
-      return user.passwd === passwd;
-    }
-  };
-  app.use('/auth', require('./auth.js')(sqlManip));
-
+  var authapp = express();
+  nassa.init(authapp, nassa.sequelizeManip(db), bodyParser);
+  app.use('/auth', authapp);
 
   // create API app ------------------------------------------------------------
 
