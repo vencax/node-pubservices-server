@@ -2,6 +2,7 @@ var express = require('express')
   , bodyParser = require('body-parser')
   , nassa = require('node-angular-server-side-auth')
   , app = express();
+var Credit = require('subscriber-credit-rest');
 
 
 module.exports = function(db) {
@@ -23,11 +24,17 @@ module.exports = function(db) {
     api.use(require('cors')({maxAge: 86400}));
   }
 
-  var stateCtrls = require('./controllers/state')(db);
+  var stateCtrls = require('./controllers/state')(db, Credit);
   api.get('/tickets', stateCtrls.tickets);
   api.post('/buy/:id', stateCtrls.buy);
   api.get('/valid', stateCtrls.getValids);
   api.get('/valid/:id', stateCtrls.isValid);
+
+  // credit updating (bank account checking)
+  var FIOAccessor = require('./fioaccessor');
+  Credit.startUpdating(db, FIOAccessor);
+
+  api.use('/credit', Credit.app(db));
 
   // create main app ------------------------------------------------------------
 

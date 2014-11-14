@@ -13,8 +13,9 @@
     "express-jwt": "^0.4.0",
     "moment": "^2.8.3",
     "mysql": "^2.5.2",
-    "sequelize": "^2.0.0-rc2",
-    "node-angular-server-side-auth": "*"
+    "node-angular-server-side-auth": "*",
+    "request": "^2.48.0",
+    "sequelize": "^2.0.0-rc2"
   },
   "devDependencies": {
     "coffee-script": "^1.8.0",
