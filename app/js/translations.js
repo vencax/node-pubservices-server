@@ -64,7 +64,8 @@ angular.module("app")
     MOCKTRANSFER_H1: 'Zkušební bankovní převod',
     COMMON_REQ: 'Toto je povinné pole',
     COMMON_INVALID: 'Špatná hodnota',
-    ERROR: 'chyba'
+    ERROR: 'chyba',
+    TERMS: 'podmínky'
   });
 
   $translateProvider.preferredLanguage('cs');

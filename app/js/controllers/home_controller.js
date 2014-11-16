@@ -25,4 +25,8 @@ angular.module("app")
     });
   }
 
+})
+
+.controller('TermsCtrl', function($scope) {
+  $scope.account = '1234567890/2010';
 });

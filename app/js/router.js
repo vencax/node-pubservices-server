@@ -27,6 +27,11 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'MockTransferCtrl'
   });
 
+  $routeProvider.when('/terms', {
+    templateUrl: 'terms.html',
+    controller: 'TermsCtrl'
+  });
+
   $routeProvider.when('/', {
     templateUrl: 'home.html',
     controller: 'HomeCtrl'
