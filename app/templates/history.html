@@ -5,6 +5,10 @@
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
+    <div data-ng-show="items.length === 0" class="alert alert-danger" role="alert">
+      You have no history yet.
+    </div>
+
     <table class="table table-hover">
       <tr data-ng-repeat="i in items"
         data-ng-class="{'success': i.amount > 0, 'warning': i.amount < 0}">
