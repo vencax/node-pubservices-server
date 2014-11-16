@@ -2,7 +2,7 @@
 <div class="row">
   <div class="center-block col-md-6">
 
-    <h1 class="form-signin-heading">Please fill in the form</h1>
+    <h1 class="form-signin-heading">{{'REGISTER_H1' | translate}}</h1>
 
     <form data-ng-submit="register();" class="form-register" name="frm" role="form">
 
@@ -12,7 +12,7 @@
 
         <div class="error-container" ng-show="frm.name.$invalid">
           <small class="text-danger" ng-show="frm.name.$error.required">
-            Please input your name
+            {{'REGISTER_NAME_REQ' | translate}}
           </small>
         </div>
       </div>
@@ -24,13 +24,13 @@
 
         <div class="error-container" ng-show="frm.email.$invalid">
           <small class="text-danger" ng-show="frm.email.$error.required">
-            Please input your email
+            {{'REGISTER_EMAIL_REQ' | translate}}
           </small>
           <small class="text-danger" ng-show="frm.email.$error.email">
-            Email is invalid
+            {{'REGISTER_EMAIL_INVALID' | translate}}
           </small>
           <small class="text-danger" ng-show="frm.email.$error.unique">
-            Email is already registered
+            {{'REGISTER_EMAIL_ALREADYREG' | translate}}
           </small>
         </div>
       </div>
@@ -41,7 +41,7 @@
 
         <div class="error-container" ng-show="frm.passwd.$invalid">
           <small class="text-danger" ng-show="frm.passwd.$error.required">
-            Please input your password
+            {{'REGISTER_PWD_REQ' | translate}}
           </small>
         </div>
       </div>
@@ -52,17 +52,17 @@
 
         <div class="error-container" ng-show="frm.passwd2.$invalid">
           <small class="text-danger" ng-show="frm.passwd2.$error.required">
-            Please input your password once again for sure
+            {{'REGISTER_PWD_REPEAT_VALID' | translate}}
           </small>
           <small class="text-danger" ng-show="frm.passwd2.$error.match">
-            Both passwords doesnot match
+            {{'REGISTER_PWD_REPEAT_NOTMATCH' | translate}}
           </small>
         </div>
       </div>
 
       <div class="form-group">
         <button type="submit" class="btn btn-lg btn-primary">
-          <span class="glyphicon glyphicon-pencil"></span> Register
+          <span class="glyphicon glyphicon-pencil"></span> {{'REGISTER' | translate}}
         </button>
       </div>
 

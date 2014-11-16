@@ -2,7 +2,7 @@
 <div class="row">
   <div class="center-block col-md-4">
 
-    <h2 class="form-signin-heading">Please log in</h2>
+    <h2 class="form-signin-heading">{{'LOGIN' | translate}}</h2>
 
     <hr>
     <!-- SOCIALS -->
@@ -22,7 +22,7 @@
 
         <div class="error-container" ng-show="loginfrm.uname.$dirty && loginfrm.uname.$invalid">
           <small class="text-danger" ng-show="loginfrm.uname.$error.required">
-            Please input your username
+            {{'INPUTUSERNAME' | translate}}
           </small>
         </div>
       </div>
@@ -33,24 +33,24 @@
 
         <div class="error-container" ng-show="loginfrm.passwd.$dirty && loginfrm.passwd.$invalid">
           <small class="text-danger" ng-show="loginfrm.passwd.$error.required">
-            Please input your password
+            {{'INPUTPWD' | translate}}
           </small>
         </div>
       </div>
 
-      <p data-ng-show="errors">
-        If you cannot login, please contact us.
+      <p data-ng-show="error">
+        {{'IFYOUCANNOTLOGIN' | translate}}.
       </p>
 
       <div class="form-group">
         <button class="btn btn-primary">
-          <span class="glyphicon glyphicon-user"></span> Log in
+          <span class="glyphicon glyphicon-user"></span> {{'LOGIN' | translate}}
         </button>
 
-        or
+        |
 
         <button class="btn" data-ng-click="register();">
-          <span class="glyphicon glyphicon-pencil"></span> Register
+          <span class="glyphicon glyphicon-pencil"></span> {{'REGISTER' | translate}}
         </button>
       </div>
 

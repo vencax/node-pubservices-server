@@ -1,5 +1,6 @@
 var app = angular.module("app", [
-  "ngResource", "ngRoute", "ngTable", "ngCookies", "ui.bootstrap", "ngStorage"
+  "ngResource", "ngRoute", "ngTable", "ngCookies", "ui.bootstrap", "ngStorage",
+  "pascalprecht.translate"
 ]);
 
 app.run(function($rootScope, $location, AuthService, TicketSrvc) {

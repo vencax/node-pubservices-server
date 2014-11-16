@@ -31,6 +31,7 @@ module.exports = (lineman) ->
       "vendor/bower/ng-table/ng-table.js",
       "vendor/bower/ngstorage/ngStorage.js",
       "vendor/bower/moment/min/moment-with-locales.js",
+      "vendor/bower/angular-translate/angular-translate.js",
       "vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js"
     ],
     app: [

@@ -4,31 +4,31 @@
 
   <div data-ng-hide="!!loggedUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <h1>Jízdenky na MHD</h1>
+    <h1>{{'HOME' | translate}}</h1>
 
-    <p>Nejaky keci</p>
+    <p>{{'HOME' | translate}}</p>
 
     <a class="btn btn-primary btn-lg" href="/buy" role="button">
-      Buy!
+      {{'BUY' | translate}}
     </a>
 
   </div>
 
   <div data-ng-show="!!loggedUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <h1>Platné jízdenky</h1>
+    <h1>{{'VALID_TICKETS' | translate}}</h1>
 
     <div class="alert alert-danger" role="alert" data-ng-hide="tickets.length > 0">
-      You have no valid ticket!
+      {{'NO_VALID_TICKETS' | translate}}
     </div>
 
     <table class="table table-hover" data-ng-show="tickets.length > 0">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Remaining</th>
-          <th>Expires</th>
-          <th>Desc</th>
+          <th>{{'REMAINING' | translate}}</th>
+          <th>{{'EXPIRES' | translate}}</th>
+          <th>{{'DESC' | translate}}</th>
         </tr>
       </thead>
       <tbody>
