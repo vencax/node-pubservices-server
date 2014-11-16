@@ -60,7 +60,11 @@ angular.module("app")
     REGISTER_PWD_REQ: 'Prosím, zadej heslo',
     REGISTER_PWD_REPEAT_VALID: 'Zadej heslo znovu, pro kontrolu',
     REGISTER_PWD_REPEAT_NOTMATCH: 'Zadaná hesla nesouhlasí',
-    RIGHTSREMOVED: 'všechna práva vyhlazena'
+    RIGHTSREMOVED: 'všechna práva vyhlazena',
+    MOCKTRANSFER_H1: 'Zkušební bankovní převod',
+    COMMON_REQ: 'Toto je povinné pole',
+    COMMON_INVALID: 'Špatná hodnota',
+    ERROR: 'chyba'
   });
 
   $translateProvider.preferredLanguage('cs');
