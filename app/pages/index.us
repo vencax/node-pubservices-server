@@ -3,6 +3,7 @@
   <head>
     <title><%= pkg.name %></title>
     <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
   </head>
   <body>
@@ -10,7 +11,7 @@
     <div ng-show="loggedUser" class="navbar-wrapper" ng-include src="'mixins/navbar.html'">
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
 
       <div id="view" ng-view></div>
 
