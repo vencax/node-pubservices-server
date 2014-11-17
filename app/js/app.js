@@ -10,7 +10,7 @@ app.run(function($rootScope, $location, AuthService, TicketSrvc) {
   if(AuthService.getCurrentUser()) {
     $rootScope.loggedUser = AuthService.getCurrentUser();
     TicketSrvc.credit($rootScope.loggedUser).success(function(credit){
-      $rootScope.loggedUser.credit = credit;
+      $rootScope.loggedUser.credit = parseInt(credit, 10);
     });
   }
 

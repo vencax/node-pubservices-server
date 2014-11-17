@@ -12,7 +12,7 @@ angular.module("app")
   $scope.process = function() {
     TicketSrvc.creditincrease($scope.info)
     .success(function(change) {
-      $rootScope.loggedUser.credit += change.amount;
+      $rootScope.loggedUser.credit += parseInt(change.amount, 10);
     })
     .error(function(err) {
       $scope.error = err;
