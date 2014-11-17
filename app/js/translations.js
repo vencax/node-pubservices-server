@@ -34,7 +34,8 @@ angular.module("app")
   $translateProvider.translations('cs', {
     TITLE: 'Hallo',
     LOADING: 'Nahrávám',
-    HOME: 'Domů',
+    HOME: 'Moje jízdenky',
+    HOME_H1: 'Konečně online jízdenky na MHD',
     BUY: 'Nákup',
     EXPIRES: 'Vyprší',
     REMAINING: 'Zbývá',
