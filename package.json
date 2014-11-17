@@ -8,17 +8,19 @@
     "company": "ACME, Inc."
   },
   "scripts": {
+    "preinstall": "lineman build",
     "start": "lineman run",
     "test": "lineman spec-ci"
   },
   "dependencies": {
-    "cors": "^2.5.0",
     "coffee-script": "^1.6.3",
+    "cors": "^2.5.0",
     "jasmine-given": "^2.6.2",
     "lineman": "^0.34.0",
     "lineman-angular": "^0.3.0",
     "lineman-bower": "0.0.5",
     "lineman-less": "0.0.1",
+    "node-ticket-please": "git+https://github.com/vencax/node-pubservices-server.git",
     "protractor": "^1.2.0-beta1"
   }
 }
