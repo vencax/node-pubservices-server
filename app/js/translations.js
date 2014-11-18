@@ -66,6 +66,8 @@ angular.module("app")
     COMMON_REQ: 'Toto je povinné pole',
     COMMON_INVALID: 'Špatná hodnota',
     ERROR: 'chyba',
+    REIGISTERED_EMAIL: 'email, zadaný při registraci',
+    YOUR_PASSWORD: 'tvoje heslo',
     TERMS: 'podmínky',
     USER_NOT_FOUND: 'Uživatel s daným UID nenalezen',
     NOT_ENOUGH_MONEY: 'Nedostatečný kredit'
