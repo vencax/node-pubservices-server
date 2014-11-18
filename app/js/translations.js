@@ -66,7 +66,8 @@ angular.module("app")
     COMMON_REQ: 'Toto je povinné pole',
     COMMON_INVALID: 'Špatná hodnota',
     ERROR: 'chyba',
-    TERMS: 'podmínky'
+    TERMS: 'podmínky',
+    USER_NOT_FOUND: 'Uživatel s daným UID nenalezen'
   });
 
   $translateProvider.preferredLanguage('cs');

@@ -121,9 +121,10 @@ module.exports =
 
     # ------------------ credit --------------------
 
-    app.get "#{prefix}/credit/up", (req, res) ->
-      _crediAccounts[_gandalf.id].state += 100
-      res.json({message: "OK"})
+    app.post "#{prefix}/credit/increase", (req, res) ->
+      return res.status(400).send('USER_NOT_FOUND') if req.body.uid != 111
+      _crediAccounts[_gandalf.id].state += req.body.amount
+      res.json({amount: req.body.amount})
 
     app.get "#{prefix}/credit/history", (req, res) ->
       rv = (v for k, v of _buyed)
