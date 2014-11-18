@@ -1,7 +1,7 @@
 
 
 angular.module("app").controller('BuyCtrl',
-  function($scope, $rootScope, $location, TicketSrvc) {
+  function($scope, $rootScope, $location, $translate, TicketSrvc) {
 
   $scope.data = [];
   TicketSrvc.list().success(function(data) {
@@ -12,10 +12,8 @@ angular.module("app").controller('BuyCtrl',
     TicketSrvc.buy(ticket).success(function(data) {
       $rootScope.loggedUser.credit -= ticket.amount;
       $location.path('/');
-    }).error(function(err, status){
-      if (status === 400) {
-        alert('Not enough money!');
-      }
+    }).error(function(err){
+      $scope.error = $translate.instant(err);
     });
   };
 

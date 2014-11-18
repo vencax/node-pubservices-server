@@ -67,7 +67,8 @@ angular.module("app")
     COMMON_INVALID: 'Špatná hodnota',
     ERROR: 'chyba',
     TERMS: 'podmínky',
-    USER_NOT_FOUND: 'Uživatel s daným UID nenalezen'
+    USER_NOT_FOUND: 'Uživatel s daným UID nenalezen',
+    NOT_ENOUGH_MONEY: 'Nedostatečný kredit'
   });
 
   $translateProvider.preferredLanguage('cs');

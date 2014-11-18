@@ -6,15 +6,16 @@
 
     <h2>Vyber jízdenku</h2>
 
-    <p class="info" ng-hide="{{cfg.message}}" ng-model="cfg.message"></p>
+    <div data-ng-show="error" class="alert alert-danger" role="alert">
+      {{'ERROR' | translate}}: {{ error }}.
+    </div>
 
-    <ul class="ticket" data-ng-repeat="t in data">
-      <li data-ng-click="buy(t);" class="pull-left">
-        <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
-        <h4>{{ t.desc }}</h4>
-        <p>{{ t.amount }}</p>
-      </li>
-    </ul>
+    <div data-ng-repeat="t in data" class="ticket"
+      data-ng-click="buy(t);" class="pull-left" ng-class="{nomoney: t.amount > loggedUser.credit}">
+      <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
+      <h4>{{ t.desc }}</h4>
+      <p>{{ t.amount }}</p>
+    </div>
 
   </div>
 

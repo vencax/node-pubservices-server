@@ -20,11 +20,26 @@ _gandalf =
   uname: 'gandalf'
   token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mywi"
 
+urlBase = 'http://www.comettplus.cz/img/'
+
 _products =
-  1: {id: 1, desc: "za 10", amount: 10, valid: 4, url: 'http://www.comettplus.cz/img/listek10p.jpg'}
-  2: {id: 2, desc: "za 12", amount: 12, valid: 8, url: 'http://www.comettplus.cz/img/listek12p.jpg'}
-  3: {id: 3, desc: "za 14", amount: 14, valid: 18, url: 'http://www.comettplus.cz/img/listek14p.jpg'}
-  4: {id: 4, desc: "za 16", amount: 16, valid: 60, url: 'http://www.comettplus.cz/img/listek16p.jpg'}
+  0: {id: 0, desc: "4 min, zlevněná", amount: 5, valid: 4, url: urlBase + 'listek5z.jpg'}
+  1: {id: 1, desc: "4 min, plnocenná", amount: 10, valid: 4, url: urlBase + 'listek10p.jpg'}
+
+  2: {id: 2, desc: "8 min, zlevněná", amount: 6, valid: 8, url: urlBase + 'listek6z.jpg'}
+  3: {id: 3, desc: "8 min, plnocenná", amount: 12, valid: 8, url: urlBase + 'listek12p.jpg'}
+
+  4: {id: 4, desc: "18 min, zlevněná", amount: 7, valid: 18, url: urlBase + 'listek7z.jpg'}
+  5: {id: 5, desc: "18 min, plnocenná", amount: 14, valid: 18, url: urlBase + 'listek14p.jpg'}
+
+  6: {id: 6, desc: "60 min, zlevněná", amount: 8, valid: 60, url: urlBase + 'listek8z.jpg'}
+  7: {id: 7, desc: "60 min, plnocenná", amount: 16, valid: 60, url: urlBase + 'listek16p.jpg'}
+
+  8: {id: 8, desc: "24 hod, zlevněná", amount: 25, valid: 24 * 60, url: urlBase + 'listek25z.jpg'}
+  9: {id: 9, desc: "24 hod, plnocenná", amount: 50, valid: 24 * 60, url: urlBase + 'listek50p.jpg'}
+
+  10: {id: 10, desc: "7 dnů, zlevněná", amount: 75, valid: 7 * 24 * 60, url: urlBase + 'listek75z.jpg'}
+  11: {id: 11, desc: "7 dnů, plnocenná", amount: 150, valid: 7 * 24 * 60, url: urlBase + 'listek150p.jpg'}
 
 _users = {}
 _buyed = {
@@ -103,7 +118,7 @@ module.exports =
         res.status(201).json(rv)
         _next_buyed += 1
       else
-        res.status(400).json()
+        res.status(400).json('NOT_ENOUGH_MONEY')
 
     app.get "#{prefix}/valid/:id", (req, res) ->
       res.json({ valid: true})
