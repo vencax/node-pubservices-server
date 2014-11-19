@@ -1,9 +1,24 @@
 
+@media (max-width: @screen-md) {
+  .ticket {
+    width: 100px;
+  }
+}
+
+@media (max-width: @screen-xs) {
+  .ticket {
+    width: 40%;  // to display at least 2 ticket in a row
+  }
+}
+
+button {
+  margin-bottom: 0px !important;
+}
+
 .ticket {
   display: inline-block;
   margin: 10px;
   text-align: center;
-  width: 100px;
 }
 
 .ticket img {
