@@ -10,7 +10,7 @@ var _adaptUser = function(user) {
 };
 
 
-app.factory('AuthService', function($http, $window, $rootScope, $localStorage) {
+app.factory('AuthService', function($http, $window, $rootScope, $localStorage, Conf) {
 
   var _setUser = function(user) {
     $localStorage.currentUser = _adaptUser(user);
@@ -20,7 +20,7 @@ app.factory('AuthService', function($http, $window, $rootScope, $localStorage) {
   // these routes map to stubbed API endpoints in config/server.js
   return {
     login: function(credentials, done) {
-      $http.post('/auth/login', credentials)
+      $http.post(Conf.host + '/auth/login', credentials)
         .success(function(user){
           _setUser(user);
           return done(null, user);
@@ -39,7 +39,7 @@ app.factory('AuthService', function($http, $window, $rootScope, $localStorage) {
     },
 
     socialLogin: function(provider, cb) {
-      $window.location.href = '/auth/' + provider + '/';
+      $window.location.href = Conf.host + '/auth/' + provider + '/';
     },
 
     getCurrentUser: function() {
@@ -51,7 +51,7 @@ app.factory('AuthService', function($http, $window, $rootScope, $localStorage) {
     },
 
     register: function(user, cb) {
-      $http.post('/auth/register', user)
+      $http.post(Conf.host + '/auth/register', user)
         .success(function(user) {
           return cb(null, user);
         })
@@ -61,7 +61,7 @@ app.factory('AuthService', function($http, $window, $rootScope, $localStorage) {
     },
 
     changePwd: function(pwd, cb) {
-      $http.post('/auth/setpasswd', {'passwd': pwd})
+      $http.post(Conf.host + '/auth/setpasswd', {'passwd': pwd})
         .success(function(data) {
           return cb(null, data);
         })
@@ -71,7 +71,7 @@ app.factory('AuthService', function($http, $window, $rootScope, $localStorage) {
     },
 
     requestForgottenPwd: function(email, cb) {
-      $http.post('/auth/requestforgotten', {'email': email})
+      $http.post(Conf.host + '/auth/requestforgotten', {'email': email})
         .success(function(data) {
           return cb(null, data);
         })

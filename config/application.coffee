@@ -17,6 +17,13 @@ module.exports = (lineman) ->
 
   app = lineman.config.application
 
+  # Context for index.us
+  app.pages.dev.context.rest =
+    url: process.env.API_URL || ''
+
+  app.pages.dist.context.rest =
+    url: process.env.API_URL || ''
+
   # Override application configuration here. Common examples follow in the comments.
 
     #grunt-angular-templates assumes your module is named "app", but
