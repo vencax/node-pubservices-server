@@ -1,0 +1,56 @@
+
+
+
+<h1>Change your password</h1>
+
+<div class="row">
+
+  <div class="col-md-4">
+
+    <h4 class="form-signin-heading">Please log in</h4>
+
+    <form class="form-signin" data-ng-submit="submit();" name="loginfrm" role="form">
+
+      <div class="form-group">
+        <input type="password" name="passwd" class="form-control" placeholder="Password"
+          required ng-model="pwd" match="pwdVerif">
+
+        <div class="error-container" ng-show="frm.passwd.$invalid">
+          <small class="text-danger" ng-show="frm.passwd.$error.required">
+            Please input your password
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" name="passwd2" class="form-control" placeholder="Password"
+          required ng-model="pwdVerif" match="pwd">
+
+        <div class="error-container" ng-show="frm.passwd2.$invalid">
+          <small class="text-danger" ng-show="frm.passwd2.$error.required">
+            Please input your password once again for sure
+          </small>
+          <small class="text-danger" ng-show="frm.passwd2.$error.match">
+            Both passwords doesnot match
+          </small>
+        </div>
+      </div>
+
+      <div data-ng-show="error" class="alert alert-danger" role="alert">
+        {{ error }}. If you cannot login, please contact us.
+      </div>
+
+      <div data-ng-show="message" class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+
+      <div class="form-group" data-ng-hide="message">
+        <button class="btn btn-primary">
+          <span class="glyphicon glyphicon-user"></span> Log in
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

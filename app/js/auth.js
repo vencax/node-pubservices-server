@@ -6,7 +6,7 @@ var app = angular.module("app");
 app.run(function($rootScope, $location, AuthService) {
 
   // enumerate routes that don't need authentication
-  var routesNoRequiringAuth = ['/', '/login', '/register', '/terms'];
+  var routesNoRequiringAuth = ['/', '/login', '/register', '/changepwd', '/requestpwd', '/terms'];
 
   // check if current location matches route
   routeClean = function(route) {

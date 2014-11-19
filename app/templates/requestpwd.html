@@ -1,0 +1,42 @@
+
+
+
+<h1>Request for password reset</h1>
+
+<div class="row">
+
+  <div class="col-md-4 col-md-offset-1">
+
+    <h4 class="form-signin-heading">Please fill your email</h4>
+
+    <form class="form-signin" data-ng-submit="submit();" name="loginfrm" role="form">
+
+      <div class="form-group">
+        <input type="text" name="uname" class="form-control" placeholder="Email address"
+          required autofocus ng-model="email">
+
+        <div class="error-container" ng-show="loginfrm.uname.$dirty && loginfrm.uname.$invalid">
+          <small class="text-danger" ng-show="loginfrm.uname.$error.required">
+            Please input your email address
+          </small>
+        </div>
+      </div>
+
+      <div data-ng-show="error" class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+
+      <div data-ng-show="message" class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+
+      <div class="form-group" data-ng-hide="message">
+        <button class="btn btn-primary">
+          <span class="glyphicon glyphicon-user"></span> Send
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

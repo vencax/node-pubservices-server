@@ -58,6 +58,26 @@ app.factory('AuthService', function($http, $window, $rootScope, $localStorage) {
         .error(function(err) {
           return cb(err);
         });
+    },
+
+    changePwd: function(pwd, cb) {
+      $http.post('/auth/setpasswd', {'passwd': pwd})
+        .success(function(data) {
+          return cb(null, data);
+        })
+        .error(function(err) {
+          return cb(err);
+        });
+    },
+
+    requestForgottenPwd: function(email, cb) {
+      $http.post('/auth/requestforgotten', {'email': email})
+        .success(function(data) {
+          return cb(null, data);
+        })
+        .error(function(err) {
+          return cb(err);
+        });
     }
   };
 });

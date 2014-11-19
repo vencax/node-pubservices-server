@@ -37,8 +37,9 @@
         </div>
       </div>
 
-      <p data-ng-show="error">
-        {{'IFYOUCANNOTLOGIN' | translate}}.
+      <p data-ng-show="error" class="alert alert-danger" role="alert">
+        {{'ERROR' | translate}}: {{ error }}.
+        <a href="/requestpwd">{{'FORGOTTEN_PWD' | translate}}?</a>
       </p>
 
       <div class="form-group">

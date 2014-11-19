@@ -16,6 +16,7 @@ angular.module("app")
     HISTORY_TITLE: 'Credit history',
     HISTORY_NOTYET: 'You have no history yet',
     IFYOUCANNOTLOGIN: 'If you cannot login, please contact us',
+    FORGOTTEN_PWD: 'Have you forgotten your password',
     INPUTPWD: 'Please input your password',
     INPUTUSERNAME: 'Please input your username',
     LOGIN: 'Log in',
@@ -51,6 +52,7 @@ angular.module("app")
     LOGOUT: 'Odhlásit',
     REGISTER: 'Zaregistrovat',
     IFYOUCANNOTLOGIN: 'Nejde-li se přihlásit, kontaktuj nás!',
+    FORGOTTEN_PWD: 'Zapomněl jsi heslo',
     INPUTPWD: 'Prosím, zadej svoje platné heslo',
     INPUTUSERNAME: 'Prosím, zadej svoje uživatelské jmého',
     REGISTER_H1: 'Registrační formulář',
@@ -70,6 +72,7 @@ angular.module("app")
     YOUR_PASSWORD: 'tvoje heslo',
     TERMS: 'podmínky',
     USER_NOT_FOUND: 'Uživatel s daným UID nenalezen',
+    WRONG_CREDENTIALS: 'špatné uživatelské jmého nebo heslo',
     NOT_ENOUGH_MONEY: 'Nedostatečný kredit'
   });
 

@@ -1,7 +1,6 @@
-var app = angular.module("app");
+angular.module("app")
 
-
-app.controller('RegisterCtrl', function($scope, $rootScope, $location, AuthService) {
+.controller('RegisterCtrl', function($scope, $rootScope, $location, AuthService) {
 
   $scope.user = { name: "", email: "", passwd: "" };
   $scope.pwdVerif = "";
@@ -22,4 +21,37 @@ app.controller('RegisterCtrl', function($scope, $rootScope, $location, AuthServi
     });
   };
 
+})
+
+.controller('RequestpwdCtrl', function($scope, $location, $translate, AuthService) {
+  $scope.email = "";
+  $scope.error = $scope.message = null;
+
+  $scope.submit = function() {
+    AuthService.requestForgottenPwd($scope.email, function(err, data) {
+      if(err) {
+        $scope.error = $translate.instant(err);
+      } else {
+        $scope.error = null;
+        $scope.message = "Ok, password reset request sent";
+      }
+    });
+  };
+})
+
+.controller('ChangepwdCtrl', function($scope, $rootScope, $translate, AuthService) {
+  $scope.pwd = "";
+  $scope.pwdVerif = "";
+  $scope.error = $scope.message = null;
+
+  $scope.submit = function() {
+    AuthService.changePwd($scope.pwd, function(err, data) {
+      if(err) {
+        $scope.error = $translate.instant(err);
+      } else {
+        $scope.error = null;
+        $scope.message = data;
+      }
+    });
+  };
 });

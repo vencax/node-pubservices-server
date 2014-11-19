@@ -7,6 +7,16 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'LoginController'
   });
 
+  $routeProvider.when('/changepwd', {
+    templateUrl: 'changepwd.html',
+    controller: 'ChangepwdCtrl'
+  });
+
+  $routeProvider.when('/requestpwd', {
+    templateUrl: 'requestpwd.html',
+    controller: 'RequestpwdCtrl'
+  });
+
   $routeProvider.when('/history', {
     templateUrl: 'history.html',
     controller: 'HistoryCtrl'

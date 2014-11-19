@@ -18,6 +18,7 @@ _gandalf =
   last_name: 'The Gray'
   role: 0
   uname: 'gandalf'
+  email: 'g@nda.lf'
   token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mywi"
 
 urlBase = 'http://www.comettplus.cz/img/'
@@ -65,7 +66,10 @@ module.exports =
     app.use(require('cors')({maxAge: 86400}));
 
     app.post "/auth/login", (req, res) ->
-      res.json(_gandalf)
+      if req.body.username == _gandalf.uname and req.body.password == _gandalf.passwd
+        res.json(_gandalf)
+      else
+        res.status(404).send('WRONG_CREDENTIALS')
 
     app.post "/auth/logout", (req, res) ->
       res.json({ message: 'logging out!'})
@@ -86,6 +90,15 @@ module.exports =
       _users[req.body.email] = req.body
       console.log(_users)
       res.json(_users[req.body.email])
+
+    app.post "/auth/setpasswd", (req, res) ->
+      res.json('OK')
+
+    app.post "/auth/requestforgotten", (req, res) ->
+      if req.body.email == _gandalf.email
+        res.json('OK')
+      else
+        res.status(404).json('USER_NOT_FOUND')
 
     # -------------- API ---------------
 

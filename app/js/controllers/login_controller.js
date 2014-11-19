@@ -1,10 +1,9 @@
 var app = angular.module("app");
 
 
-app.controller('LoginController', function($scope, $rootScope, $location, $cookies, AuthService, TicketSrvc) {
+app.controller('LoginController', function($scope, $rootScope, $location, $cookies, $translate, AuthService, TicketSrvc) {
 
   $scope.credentials = { username: "", password: "" };
-  $scope.errors = [];
 
   var _onLoggedIn = function(user) {
     $location.path("/");
@@ -22,10 +21,10 @@ app.controller('LoginController', function($scope, $rootScope, $location, $cooki
 
   var _authServiceHandler = function(err, user) {
     if (err) {
-      $scope.errors.push(err);
-      return alert(err);
+      $scope.error = $translate.instant(err);
+    } else {
+      _onLoggedIn(user);
     }
-    _onLoggedIn(user);
   };
 
   $scope.login = function() {
