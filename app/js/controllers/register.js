@@ -39,7 +39,7 @@ angular.module("app")
   };
 })
 
-.controller('ChangepwdCtrl', function($scope, $rootScope, $translate, AuthService) {
+.controller('ChangepwdCtrl', function($scope, $rootScope, AuthService) {
   $scope.pwd = "";
   $scope.pwdVerif = "";
   $scope.error = $scope.message = null;
@@ -47,7 +47,7 @@ angular.module("app")
   $scope.submit = function() {
     AuthService.changePwd($scope.pwd, function(err, data) {
       if(err) {
-        $scope.error = $translate.instant(err);
+        $scope.error = err;
       } else {
         $scope.error = null;
         $scope.message = data;

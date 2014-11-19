@@ -1,52 +1,52 @@
 
 
 
-<h1>Change your password</h1>
+<h1>{{'REGISTER_CHANGE_PWD_H1' | translate}}</h1>
 
 <div class="row">
 
-  <div class="col-md-4">
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
 
-    <h4 class="form-signin-heading">Please log in</h4>
-
-    <form class="form-signin" data-ng-submit="submit();" name="loginfrm" role="form">
+    <form class="form-signin" data-ng-submit="submit();" name="frm" role="form">
 
       <div class="form-group">
-        <input type="password" name="passwd" class="form-control" placeholder="Password"
+        <input type="password" name="passwd" class="form-control"
+          placeholder="{{'REGISTER_PWD_REQ' | translate}}"
           required ng-model="pwd" match="pwdVerif">
 
-        <div class="error-container" ng-show="frm.passwd.$invalid">
+        <div class="error-container" ng-show="frm.passwd.$invalid && frm.passwd.$dirty">
           <small class="text-danger" ng-show="frm.passwd.$error.required">
-            Please input your password
+            {{'REGISTER_PWD_REQ' | translate}}
           </small>
         </div>
       </div>
 
       <div class="form-group">
-        <input type="password" name="passwd2" class="form-control" placeholder="Password"
+        <input type="password" name="passwd2" class="form-control"
+          placeholder="{{'REGISTER_PWD_REPEAT_VALID' | translate}}"
           required ng-model="pwdVerif" match="pwd">
 
-        <div class="error-container" ng-show="frm.passwd2.$invalid">
+        <div class="error-container" ng-show="frm.passwd2.$invalid && frm.passwd2.$dirty">
           <small class="text-danger" ng-show="frm.passwd2.$error.required">
-            Please input your password once again for sure
+            {{'REGISTER_PWD_REPEAT_VALID' | translate}}
           </small>
           <small class="text-danger" ng-show="frm.passwd2.$error.match">
-            Both passwords doesnot match
+            {{'REGISTER_PWD_REPEAT_NOTMATCH' | translate}}
           </small>
         </div>
       </div>
 
       <div data-ng-show="error" class="alert alert-danger" role="alert">
-        {{ error }}. If you cannot login, please contact us.
+        {{error | translate}}
       </div>
 
       <div data-ng-show="message" class="alert alert-success" role="alert">
-        {{ message }}
+        {{message | translate}}
       </div>
 
       <div class="form-group" data-ng-hide="message">
-        <button class="btn btn-primary">
-          <span class="glyphicon glyphicon-user"></span> Log in
+        <button class="btn btn-primary" ng-disabled="frm.$invalid">
+          <span class="glyphicon glyphicon-refresh"></span> OK
         </button>
       </div>
 

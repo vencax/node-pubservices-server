@@ -29,6 +29,7 @@ angular.module("app")
     REGISTER_PWD_REQ: 'Please input your password',
     REGISTER_PWD_REPEAT_VALID: 'Please input your password once again for sure',
     REGISTER_PWD_REPEAT_NOTMATCH: 'Both passwords doesnot match',
+    REGISTER_CHANGE_PWD_H1: 'Change your password',
     RIGHTSREMOVED: 'all rights removed'
   });
 
@@ -63,6 +64,7 @@ angular.module("app")
     REGISTER_PWD_REQ: 'Prosím, zadej heslo',
     REGISTER_PWD_REPEAT_VALID: 'Zadej heslo znovu, pro kontrolu',
     REGISTER_PWD_REPEAT_NOTMATCH: 'Zadaná hesla nesouhlasí',
+    REGISTER_CHANGE_PWD_H1: 'Změna hesla',
     RIGHTSREMOVED: 'všechna práva vyhlazena',
     MOCKTRANSFER_H1: 'Zkušební bankovní převod',
     COMMON_REQ: 'Toto je povinné pole',
@@ -70,6 +72,7 @@ angular.module("app")
     ERROR: 'chyba',
     REIGISTERED_EMAIL: 'email, zadaný při registraci',
     YOUR_PASSWORD: 'tvoje heslo',
+    PWD_CHANGED: 'Heslo změněno',
     TERMS: 'podmínky',
     USER_NOT_FOUND: 'Uživatel s daným UID nenalezen',
     WRONG_CREDENTIALS: 'špatné uživatelské jmého nebo heslo',

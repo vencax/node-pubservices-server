@@ -92,7 +92,7 @@ module.exports =
       res.json(_users[req.body.email])
 
     app.post "/auth/setpasswd", (req, res) ->
-      res.json('OK')
+      res.json('PWD_CHANGED')
 
     app.post "/auth/requestforgotten", (req, res) ->
       if req.body.email == _gandalf.email
