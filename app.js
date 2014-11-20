@@ -2,7 +2,7 @@ var express = require('express')
   , bodyParser = require('body-parser')
   , nassa = require('node-angular-server-side-auth')
   , app = express();
-var Credit = require('subscriber-credit-rest');
+var Credit = require('subscriber-credit');
 
 
 module.exports = function(db, sendMail) {
@@ -34,7 +34,8 @@ module.exports = function(db, sendMail) {
   var FIOAccessor = require('./fioaccessor');
   Credit.startUpdating(db, FIOAccessor);
 
-  api.use('/credit', Credit.app(db));
+  var creditapp = express();
+  api.use('/credit', Credit.hookTo(express(), db));
 
   // create main app ------------------------------------------------------------
 

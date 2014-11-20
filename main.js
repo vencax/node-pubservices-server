@@ -23,7 +23,7 @@ if(process.env.EMAIL_HOST) {
 }
 
 var modelModules = [
-  require('subscriber-credit-rest').models,
+  require('subscriber-credit').models,
   require('./models')
 ];
 

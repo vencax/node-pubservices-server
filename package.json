@@ -1,6 +1,6 @@
 {
   "name": "node-ticket-please",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "REST server for buying tickets in pub transport",
   "main": "main.js",
   "engines": {
@@ -12,8 +12,8 @@
     "express": "^4.9.0",
     "express-jwt": "^0.4.0",
     "moment": "^2.8.3",
-    "node-angular-server-side-auth": "*",
-    "node-subscriber-credit-rest": "git+https://github.com/vencax/node-subscriber-credit-rest.git",
+    "node-angular-server-side-auth": "^0.0.3",
+    "subscriber-credit": "^0.0.2",
     "pg": "^3.6.3",
     "request": "^2.48.0",
     "sendgrid": "^1.3.0",
