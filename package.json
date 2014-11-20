@@ -1,7 +1,7 @@
 {
   "name": "angular-pubtrans-tickets",
   "title": "Angular frontend for public trasport tickets app",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "author": {
     "name": "John Doe",
@@ -20,7 +20,7 @@
     "lineman-angular": "^0.3.0",
     "lineman-bower": "0.0.5",
     "lineman-less": "0.0.1",
-    "node-ticket-please": "git+https://github.com/vencax/node-pubservices-server.git",
+    "node-ticket-please": "git+https://github.com/vencax/node-pubservices-server.git#0.1.2",
     "protractor": "^1.2.0-beta1"
   }
 }
