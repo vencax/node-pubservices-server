@@ -16,6 +16,7 @@
     "node-subscriber-credit-rest": "git+https://github.com/vencax/node-subscriber-credit-rest.git",
     "pg": "^3.6.3",
     "request": "^2.48.0",
+    "sendgrid": "^1.3.0",
     "sequelize": "^2.0.0-rc2"
   },
   "devDependencies": {

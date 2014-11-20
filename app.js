@@ -5,10 +5,10 @@ var express = require('express')
 var Credit = require('subscriber-credit-rest');
 
 
-module.exports = function(db) {
+module.exports = function(db, sendMail) {
 
   var authapp = express();
-  nassa.init(authapp, nassa.sequelizeManip(db), bodyParser);
+  nassa.init(authapp, nassa.sequelizeManip(db), bodyParser, sendMail);
   app.use('/auth', authapp);
 
   // create API app ------------------------------------------------------------
