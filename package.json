@@ -1,7 +1,7 @@
 {
   "name": "angular-pubtrans-tickets",
   "title": "Angular frontend for public trasport tickets app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "author": {
     "name": "John Doe",
