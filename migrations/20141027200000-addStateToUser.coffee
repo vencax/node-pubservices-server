@@ -5,6 +5,11 @@ module.exports =
       type: DataTypes.INTEGER
       allowNull: false
       defaultValue: 1
+    .then(done)
+    .catch (err)->
+      console.log(err)
+      done()
 
   down: (migration, DataTypes, done) ->
     migration.removeColumn "Users", "state"
+    .then(done)
