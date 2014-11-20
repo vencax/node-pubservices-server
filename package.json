@@ -20,7 +20,7 @@
     "lineman-angular": "^0.3.0",
     "lineman-bower": "0.0.5",
     "lineman-less": "0.0.1",
-    "node-ticket-please": "git+https://github.com/vencax/node-pubservices-server.git#0.1.3",
+    "node-ticket-please": "git+https://github.com/vencax/node-pubservices-server.git#0.1.4",
     "protractor": "^1.2.0-beta1"
   }
 }
