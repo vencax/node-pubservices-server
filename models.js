@@ -7,7 +7,8 @@ module.exports = function(sequelize, Sequelize) {
     User: sequelize.define('User', {
       name: Sequelize.STRING,
       email: Sequelize.STRING,
-      passwd: Sequelize.STRING
+      passwd: Sequelize.STRING,
+      state: Sequelize.INTEGER
     }),
 
     Expirations: sequelize.define('Expirations', {
