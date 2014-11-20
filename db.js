@@ -16,7 +16,7 @@ module.exports.init = function(modelModules, cb) {
   });
 
   var migrator = sequelize.getMigrator({
-    path:        process.cwd() + '/migrations',
+    path:        __dirname + '/migrations',
     filesFilter: /\.coffee$/
   });
   migrator.migrate({ method: 'up' })
