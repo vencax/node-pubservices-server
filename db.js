@@ -15,13 +15,16 @@ module.exports.init = function(modelModules, cb) {
     extend(db, mod(sequelize, Sequelize));
   });
 
-  sequelize.sync()
-    .on('success', function() {
-      console.log('DB synced successfully.');
-      cb(null, db);
-    })
-    .on('failure', function(err) {
-      cb('Unable to sync database: ' + err);
-    });
+  var migrator = sequelize.getMigrator({
+    path:        process.cwd() + '/migrations',
+    filesFilter: /\.coffee$/
+  });
+  migrator.migrate({ method: 'up' })
+  .on('success', function() {
+    cb(null, db);
+  })
+  .on('failure', function(err) {
+    cb('Unable to sync database: ' + err);
+  });
 
 };
