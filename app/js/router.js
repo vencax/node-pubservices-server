@@ -17,6 +17,11 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'RequestpwdCtrl'
   });
 
+  $routeProvider.when('/_socialcallback', {
+    templateUrl: 'login.html',
+    controller: 'SocialLoginCallbackCtrl'
+  });
+
   $routeProvider.when('/history', {
     templateUrl: 'history.html',
     controller: 'HistoryCtrl'

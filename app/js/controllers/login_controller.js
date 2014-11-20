@@ -1,7 +1,6 @@
-var app = angular.module("app");
+angular.module("app")
 
-
-app.controller('LoginController', function($scope, $rootScope, $location, $cookies, $translate, AuthService, TicketSrvc) {
+.controller('LoginController', function($scope, $rootScope, $location, $translate, AuthService, TicketSrvc) {
 
   $scope.credentials = { username: "", password: "" };
 
@@ -12,12 +11,6 @@ app.controller('LoginController', function($scope, $rootScope, $location, $cooki
       user.credit = credit;
     });
   };
-
-  if ($cookies.authinfo) {
-    var user = JSON.parse($cookies.authinfo);
-    AuthService.setUser(user);
-    _onLoggedIn(user);
-  }
 
   var _authServiceHandler = function(err, user) {
     if (err) {
@@ -38,5 +31,19 @@ app.controller('LoginController', function($scope, $rootScope, $location, $cooki
   $scope.register = function() {
     $location.path("/register");
   };
+
+})
+
+.controller('SocialLoginCallbackCtrl', function($scope, $rootScope, $location, AuthService) {
+
+  AuthService.getUserAfterSocialLogin()
+  .success(function(user) {
+    $location.path("/");
+    $rootScope.loggedUser = user;
+    user.credit = 117;
+  })
+  .error(function(err) {
+    alert(err);
+  });
 
 });

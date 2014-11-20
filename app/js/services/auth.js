@@ -42,6 +42,10 @@ app.factory('AuthService', function($http, $window, $rootScope, $localStorage, C
       $window.location.href = Conf.host + '/auth/' + provider + '/';
     },
 
+    getUserAfterSocialLogin: function() {
+      return $http.get(Conf.host + '/auth/userinfo');
+    },
+
     getCurrentUser: function() {
       return $localStorage.currentUser || null;
     },
