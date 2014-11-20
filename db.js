@@ -19,11 +19,9 @@ module.exports.init = function(modelModules, cb) {
     path:        __dirname + '/migrations',
     filesFilter: /\.coffee$/
   });
-  migrator.migrate({ method: 'up' })
-  .on('success', function() {
+  migrator.migrate({ method: 'up' }).then(function() {
     cb(null, db);
-  })
-  .on('failure', function(err) {
+  }).catch(function(err) {
     cb('Unable to sync database: ' + err);
   });
 
