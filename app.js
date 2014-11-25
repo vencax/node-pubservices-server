@@ -8,7 +8,7 @@ var Credit = require('subscriber-credit');
 module.exports = function(db, sendMail) {
 
   var authapp = express();
-  nassa.init(authapp, nassa.sequelizeManip(db), bodyParser, sendMail);
+  nassa.init(authapp, nassa.manips.sequelize(db), bodyParser, sendMail);
   app.use('/auth', authapp);
 
   // create API app ------------------------------------------------------------
