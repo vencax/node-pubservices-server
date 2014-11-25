@@ -39,23 +39,15 @@ module.exports = function(db, sendMail) {
 
   // create main app ------------------------------------------------------------
 
-  if ('FRONTEND_APP' in process.env) {
-    // mount angular frontend -> no need for CORS
-    console.log("mounting angular frontend ...");
-    app.use(express.static(process.env.FRONTEND_APP));
-  }
-
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
   var prefix = '/api';
   app.use(prefix, api);
 
-  if ('FRONTEND_APP' in process.env) {
-    app.get('*', function(req, res) {
-      res.sendfile(process.env.FRONTEND_APP + '/index.html');
-    });
-  }
+  require('lineman-express')(app, express.static, function(err) {
+    if(err) { console.log(err); }
+  });
 
   return app;
 };
