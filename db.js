@@ -2,8 +2,8 @@ var Sequelize = require('sequelize');
 var extend = require('util')._extend
 
 var opts = {}
-if (process.env.NODE_ENV != 'devel') { opts[logging] = false; }
-if (process.env.DATABASE_URL) { opts[storage] = 'db.sqlite'; }
+if (process.env.NODE_ENV != 'devel') { opts.logging = false; }
+if (process.env.DATABASE_URL) { opts.storage = 'db.sqlite'; }
 
 var sequelize = new Sequelize(process.env.DATABASE_URL || 'sqlite://', opts);
 
