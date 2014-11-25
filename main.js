@@ -28,6 +28,9 @@ var modelModules = [
 ];
 
 require('./db').init(modelModules, function(err, sequelize) {
+  if(err) {
+    return console.log(err);
+  }
   require('./app')(sequelize, sendMail).listen(port, function() {
     console.log('gandalf do magic on ' + port);
   });
