@@ -13,7 +13,7 @@
     "express-jwt": "^0.4.0",
     "lineman-express": "^0.0.3",
     "moment": "^2.8.3",
-    "node-angular-server-side-auth": "^0.0.3",
+    "node-angular-server-side-auth": "^0.0.4",
     "subscriber-credit": "^0.0.2",
     "pg": "^3.6.3",
     "request": "^2.48.0",
