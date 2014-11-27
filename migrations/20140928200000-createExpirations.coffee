@@ -8,7 +8,8 @@ module.exports =
         primaryKey: true
         type: DataTypes.INTEGER
       expires: DataTypes.DATE
-      transaction: DataTypes.INTEGER
+      transid: DataTypes.INTEGER
+      buyer: Sequelize.INTEGER
       uid: DataTypes.INTEGER
       desc: DataTypes.STRING
       createdAt:
