@@ -9,7 +9,7 @@ module.exports =
         type: DataTypes.INTEGER
       expires: DataTypes.DATE
       transid: DataTypes.INTEGER
-      buyer: Sequelize.INTEGER
+      buyer: DataTypes.INTEGER
       uid: DataTypes.INTEGER
       desc: DataTypes.STRING
       createdAt:
