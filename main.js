@@ -1,4 +1,5 @@
 
+require('coffee-script/register');
 var port = process.env.PORT || 8080;
 var sendMail = null;
 
@@ -24,6 +25,7 @@ if(process.env.EMAIL_HOST) {
 
 var modelModules = [
   require('subscriber-credit').models,
+  require('node-angular-server-side-auth/models').sequelize,
   require('./models')
 ];
 
