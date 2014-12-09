@@ -9,7 +9,7 @@ module.exports = function(db, sendMail) {
 
   if (! ('FRONTEND_APP' in process.env)) {
     console.log('Using CORS ...');
-    api.use(require('cors')({maxAge: 86400}));
+    app.use(require('cors')({maxAge: 86400}));
   }
 
   var authapp = express();
