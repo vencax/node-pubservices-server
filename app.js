@@ -7,6 +7,11 @@ var Credit = require('subscriber-credit');
 
 module.exports = function(db, sendMail) {
 
+  if (! ('FRONTEND_APP' in process.env)) {
+    console.log('Using CORS ...');
+    api.use(require('cors')({maxAge: 86400}));
+  }
+
   var authapp = express();
   nassa.init(authapp, nassa.manips.sequelize(db), bodyParser, sendMail);
   app.use('/auth', authapp);
@@ -19,10 +24,6 @@ module.exports = function(db, sendMail) {
 
   // We are going to protect /api routes with JWT
   api.use(expressJwt({secret: process.env.SERVER_SECRET}));
-
-  if (! ('FRONTEND_APP' in process.env)) {
-    api.use(require('cors')({maxAge: 86400}));
-  }
 
   var stateCtrls = require('./controllers/state')(db, Credit);
   api.get('/tickets', stateCtrls.tickets);
