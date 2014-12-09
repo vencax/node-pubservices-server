@@ -1,6 +1,6 @@
 {
   "name": "node-ticket-please",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "REST server for buying tickets in pub transport",
   "main": "main.js",
   "engines": {
@@ -12,7 +12,6 @@
     "cors": "^2.4.2",
     "express": "^4.9.0",
     "express-jwt": "^0.4.0",
-    "lineman-express": "^0.0.5",
     "moment": "^2.8.3",
     "node-angular-server-side-auth": "^0.0.4",
     "pg": "^3.6.3",
@@ -35,6 +34,7 @@
     "grunt-develop": "~0.3.0",
     "grunt-exec": "^0.4.6",
     "grunt-mocha-test": "~0.8.1",
+    "lineman-express": "^0.0.5",
     "sqlite3": "^3.0.2"
   },
   "scripts": {

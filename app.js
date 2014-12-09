@@ -45,9 +45,11 @@ module.exports = function(db, sendMail) {
   var prefix = '/api';
   app.use(prefix, api);
 
-  require('lineman-express')(app, express.static, function(err) {
-    if(err) { console.log(err); }
-  });
+  if ('FRONTEND_APP' in process.env) {
+    require('lineman-express')(app, express.static, function(err) {
+      if(err) { console.log(err); }
+    });
+  }
 
   return app;
 };
