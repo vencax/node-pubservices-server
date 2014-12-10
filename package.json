@@ -13,12 +13,12 @@
     "express": "^4.9.0",
     "express-jwt": "^0.4.0",
     "moment": "^2.8.3",
-    "node-angular-server-side-auth": "^0.0.4",
+    "node-angular-server-side-auth": "git+https://github.com/vencax/node-angular-server-side-auth.git",
     "pg": "^3.6.3",
     "request": "^2.48.0",
     "sendgrid": "^1.3.0",
     "sequelize": "^2.0.0-rc2",
-    "subscriber-credit": "^0.0.2"
+    "subscriber-credit": "git+https://github.com/vencax/node-subscriber-credit-rest.git"
   },
   "devDependencies": {
     "coffee-script": "^1.8.0",
