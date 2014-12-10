@@ -1,6 +1,6 @@
 {
   "name": "node-ticket-please",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "REST server for buying tickets in pub transport",
   "main": "main.js",
   "engines": {
